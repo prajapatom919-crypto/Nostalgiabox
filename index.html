@@ -1,6 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+
+<head><!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0TJZL3L9XP"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+
+    gtag('config', 'G-0TJZL3L9XP');
+  </script>
+
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Nostalgia Box</title>
@@ -8,22 +18,27 @@
   <link rel="manifest" href="manifest.webmanifest" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet" />
   <style>
     @font-face {
       font-family: 'Cormorant Garamond';
       font-display: swap;
       src: local('Cormorant Garamond'), local('Georgia'), local('Times New Roman');
     }
+
     @font-face {
       font-family: 'Inter';
       font-display: swap;
       src: local('Inter'), local('system-ui'), local('-apple-system'), local('Segoe UI');
     }
   </style>
-  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📻%3C/text%3E%3C/svg%3E" />
+  <link rel="icon"
+    href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📻%3C/text%3E%3C/svg%3E" />
   <link rel="stylesheet" href="styles.css?v=4" />
 </head>
+
 <body>
   <div class="hero" aria-label="Nostalgia Box homepage">
     <header class="top-bar">
@@ -44,7 +59,9 @@
       <section class="player-shell" aria-label="Music player">
         <div class="player-card">
           <div class="player-thumb">
-            <img id="trackThumbnail" src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E" alt="Current track thumbnail" />
+            <img id="trackThumbnail"
+              src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1' height='1'/%3E"
+              alt="Current track thumbnail" />
           </div>
 
           <div class="player-info">
@@ -52,9 +69,11 @@
               <div class="track-title" id="trackTitle">Loading playlist...</div>
               <div class="track-meta">
                 <div class="track-subtitle" id="trackSubtitle">Connect a YouTube playlist to begin.</div>
-                <a id="youtubeLink" href="#" class="youtube-link" title="Watch on YouTube" target="_blank" rel="noopener noreferrer">
+                <a id="youtubeLink" href="#" class="youtube-link" title="Watch on YouTube" target="_blank"
+                  rel="noopener noreferrer">
                   <svg class="youtube-icon" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                    <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                    <path
+                      d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z" />
                   </svg>
                 </a>
               </div>
@@ -72,11 +91,13 @@
 
           <div class="player-controls" aria-label="Playback controls">
             <button class="control-button" id="prevButton" aria-label="Previous"><span>&#9664;&#9664;</span></button>
-            <button class="control-button play-button" id="playPauseButton" aria-label="Play"><span>&#9658;</span></button>
+            <button class="control-button play-button" id="playPauseButton"
+              aria-label="Play"><span>&#9658;</span></button>
             <button class="control-button" id="nextButton" aria-label="Next"><span>&#9654;&#9654;</span></button>
             <label class="volume-wrap" aria-label="Volume">
               <span class="volume-icon">🔊</span>
-              <input id="volumeControl" class="volume-control" type="range" min="0" max="100" value="50" aria-label="Volume" />
+              <input id="volumeControl" class="volume-control" type="range" min="0" max="100" value="50"
+                aria-label="Volume" />
             </label>
           </div>
         </div>
@@ -106,4 +127,5 @@
   <script src="https://www.youtube.com/iframe_api"></script>
   <script src="script.js"></script>
 </body>
+
 </html>

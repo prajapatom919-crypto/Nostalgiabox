@@ -1,299 +1,11 @@
 const YOUTUBE_PLAYLIST_ID = 'https://music.youtube.com/playlist?list=PLfcdDdq8aLR0&si=6Ys5o2e9_bCFoP2i';
-const YOUTUBE_PLAYLIST_FALLBACK_ID = 'PLfcdDdq8aLR0';
-const YOUTUBE_PLAYLIST_FALLBACK_VIDEO_IDS = [
-  'jQXGbT839f0',
-  'UNJKp605eyA',
-  'oAMsaTCrK5c',
-  'QDcmC3lwAAw',
-  'ga7XhN00BNU',
-  '0QtQmLeuqjw',
-  '5NzQgJVwFGA',
-  'LS647DyRDE4',
-  'LOM1JpCkfdc',
-  '4eO14TOr1Fw',
-  'Wofv6tVg7cM',
-  'TJz6rRoMqnM',
-  'mEEsjJjB40Q',
-  'JFplRVx-M1I',
-  '0Ur6PJhqJ9A',
-  'jxzrBaHsL88',
-  'KT0-Rf9ykIY',
-  'x7q7hDs-OWY',
-  'trafQj2lJzE',
-  'PlQ4ojWNu6c',
-  'RmvpyuRaAmg',
-  'x8G2GqNkiEY',
-  'A7pJUB_88mw',
-  'AujzRnJIDCs',
-  'xcDJ4PEiy8Q',
-  'msCFFPc48Ig',
-  'pw7jG9Xaf08',
-  'D9xW-K8DiPM',
-  '1IOOX6uU1IU',
-  'MtGnn6qMTGQ',
-  'AVTZvboyR_M',
-  '_2CPr2G0NPo',
-  'jCcOFk_Lou8',
-  'TfN906USOt8',
-  '6h5DtYsIHWU',
-  'd3UmN-0-3Rg',
-  'jymJETc3V8c',
-  '8tMzpwMa4xk',
-  'FJV2C-O7IPU',
-  '7LL0gr94GJA',
-  'PFulYCqdXnQ',
-  'tf8NV-tUXXY',
-  'eaxigNna8hk',
-  '2iIcCoEXBN0',
-  'aeDKMVB3zuA',
-  'fk-GVUEOOfU',
-  'W6hRXrwqsxA',
-  'PkL38ClCfdQ',
-  'qlv3fk8xvfI',
-  'uykVxooNL70',
-  'moRXlROyIWA',
-  'SuAe2lziMqI',
-  '1oo1cEUlN9o',
-  'p580FsZClv0',
-  'wpj2qkaE7YQ',
-  'QFoMcZI9vRg',
-  'S6RbjC1sUXU',
-  'fndUvbC-MCQ',
+const PLAYLIST_SOURCE_PROXIES = [
+  (url) => `https://developerlab.dev/api/proxy?url=${encodeURIComponent(url)}`,
+  (url) => {
+    const parsed = new URL(url);
+    return `https://corsproxy.nl/https/${parsed.hostname}${parsed.pathname}${parsed.search}`;
+  },
 ];
-const YOUTUBE_PLAYLIST_FALLBACK_TRACK_INFO = {
-  jQXGbT839f0: {
-    title: 'Vicky aur Vetal Intro Theme Opening Song HD',
-    author: 'Back to 2000s',
-  },
-  UNJKp605eyA: {
-    title: 'Mr Bean The Animated Series Theme Song (From "Mr Bean The Animated Series")',
-    author: 'Geek Music - Topic',
-  },
-  oAMsaTCrK5c: {
-    title: 'Doraemon title song hindi',
-    author: 'Siddhanta Gadanayak',
-  },
-  QDcmC3lwAAw: {
-    title: 'Doraemon movie steel troops sad song {sabse phele hai pyar} in hindi',
-    author: 'All tech of anime',
-  },
-  ga7XhN00BNU: {
-    title: 'Shin Chan Theme Song in HINDI | #hungama #youtube',
-    author: 'Introverted_Kid',
-  },
-  '0QtQmLeuqjw': {
-    title: 'Ninja Hattori Classic Outro - Lyrical Video | LyricalLyfe',
-    author: 'LyricalLyfe Toons',
-  },
-  '5NzQgJVwFGA': {
-    title: 'Hatim title song - YouTube',
-    author: 'shaan production',
-  },
-  LS647DyRDE4: {
-    title: 'Har Kisi Me Hai Nobita (Lyrics) - Doraemon',
-    author: 'Anime CoolFire',
-  },
-  LOM1JpCkfdc: {
-    title: 'Door Na Ho Jaaye..Sad Version OST By Pamela Jain',
-    author: 'Melodious Background Music',
-  },
-  '4eO14TOr1Fw': {
-    title: 'Yeh Hai Mohabbatein Title Song (Lyrics) | Star Plus | serial',
-    author: 'A2Z Lyrics',
-  },
-  Wofv6tVg7cM: {
-    title: 'Miley jab hum tum title song full || T.V serial song||',
-    author: 'Vandu Shetty',
-  },
-  TJz6rRoMqnM: {
-    title: 'Baati Hum',
-    author: 'Riaz Miya - Topic',
-  },
-  mEEsjJjB40Q: {
-    title: 'Kiteretsu opening theme song in Hindi [HD]',
-    author: 'Back to 2000s',
-  },
-  'JFplRVx-M1I': {
-    title: 'Ben 10 - Theme song lyrics [Hindi]',
-    author: 'excitingworld05',
-  },
-  '0Ur6PJhqJ9A': {
-    title: 'Pokemon Hindi Theme Song - Lyrical Video | LyricalLyfe',
-    author: 'LyricalLyfe Toons',
-  },
-  jxzrBaHsL88: {
-    title: 'Perman Theme Opening || Lyrics Video (Hindi)',
-    author: 'excitingworld05',
-  },
-  'KT0-Rf9ykIY': {
-    title: 'Gali Gali Sim Sim Old Theme song in hindi / old childhood songs / Cartoon Worlds',
-    author: 'Cartoon Worlds',
-  },
-  'x7q7hDs-OWY': {
-    title: 'shaka laka boom boom Title song - Shakalaka Boom Boom',
-    author: 'Kutrala saral',
-  },
-  trafQj2lJzE: {
-    title: 'Jungle Jungle Baat Chali Hai HD | The The Jungle Book Hindi | Mowgli Story | Opening Song |',
-    author: 'Down The Memory Lane',
-  },
-  PlQ4ojWNu6c: {
-    title: 'Tom & Jerry',
-    author: 'Cartoon Theme Players - Topic',
-  },
-  RmvpyuRaAmg: {
-    title: 'Honey Bunny Song | Paul Shah | Prakriti Shrestha | Nitin Chand',
-    author: 'Ur Style Network',
-  },
-  x8G2GqNkiEY: {
-    title: 'Ninja Hattori Opening Song In Hindi',
-    author: 'Kaur Jessica',
-  },
-  A7pJUB_88mw: {
-    title: 'Watch Hagemaru Opening Theme Song in Hindi Remastered HD 2K NOW',
-    author: 'Lauda Singh',
-  },
-  AujzRnJIDCs: {
-    title: 'Phineas And Ferb Theme Song (V1) (Hindi, V1)',
-    author: 'MAX TV Channel',
-  },
-  xcDJ4PEiy8Q: {
-    title: 'Kochikame Opening Song | Wah! Dekhta hai Kya? [In Hindi](1080P_HD)Toon Zaraow',
-    author: 'Toon Zaraow',
-  },
-  msCFFPc48Ig: {
-    title: 'Best of luck Nikki Title Theme Song HD',
-    author: 'Back to 2000s',
-  },
-  pw7jG9Xaf08: {
-    title: 'Ultra B (Theme) Song Hindi Cutest cartoon',
-    author: 'Abhishek Thakur',
-  },
-  'D9xW-K8DiPM': {
-    title: 'Keymon ache ( Title Track) | Cartoons Songs | Ranen Adhikary | RBM RECORD',
-    author: 'RBM Record [RMG] - 10M Views - 4 hours ago',
-  },
-  '1IOOX6uU1IU': {
-    title: "Vikram Aur Betaal Title Intro Song | 80's Old Doordarshan TV serial | Arun Govil, Sajjan | 720p",
-    author: 'Sadabahar Gaane & Other Collections',
-  },
-  MtGnn6qMTGQ: {
-    title: 'Saath Nibhana Saathiya Title song | Alka Yagnik | Devoleena Bhattacharya | Serial songs',
-    author: 'NM Melodies',
-  },
-  AVTZvboyR_M: {
-    title: 'Jadoo Ye Kya Chal Gaya | Ye Rishta Kya Kahlata Hai | Akshara | Serial song | Alka Yagnik | Hina Khan',
-    author: 'NM Melodies',
-  },
-  _2CPr2G0NPo: {
-    title: 'Main Hoon Ghatothkach - Child',
-    author: 'Nadeem Shravan - Topic',
-  },
-  jCcOFk_Lou8: {
-    title: 'Bob the Builder Theme Song in Hindi | HD',
-    author: 'old hindi cartoons',
-  },
-  TfN906USOt8: {
-    title: 'Phineas and Ferb - Theme Song in Hindi [HQ]',
-    author: 'TheClubCartoon',
-  },
-  '6h5DtYsIHWU': {
-    title: 'Jake and The Never Land Pirates | Title Song | Hindi | Disney Junior India',
-    author: 'Disney Junior India',
-  },
-  'd3UmN-0-3Rg': {
-    title: 'Hero   Bhakti hi Shakti Hai Hindi Opening',
-    author: 'Indian Anime Channel',
-  },
-  jymJETc3V8c: {
-    title: 'GreenGoldKids - Chhota Bheem Title Song',
-    author: 'Green Gold Kids',
-  },
-  '8tMzpwMa4xk': {
-    title: 'Courage The Cowardly Dog - Hindi OP + ED',
-    author: "Ash 'Tyson' Yagami",
-  },
-  'FJV2C-O7IPU': {
-    title: 'Kid VS. Kat Theme Song',
-    author: 'annie',
-  },
-  '7LL0gr94GJA': {
-    title: 'Dragon Tales Intro Hindi | Dragon Tales Hindi Opening | Dragon Tales Theme Song Hindi | Dragon Tales',
-    author: "Back To 90's",
-  },
-  PFulYCqdXnQ: {
-    title: 'Popeye The Sailor Man Intro Theme Song',
-    author: "Back To 90's",
-  },
-  'tf8NV-tUXXY': {
-    title: 'Oggy and the Cockroaches - ALL OPENINGS 1998 - 2018',
-    author: 'OGGY',
-  },
-  eaxigNna8hk: {
-    title: 'Power Rangers S.P.D. Opening Hindi',
-    author: "Back To 90's",
-  },
-  '2iIcCoEXBN0': {
-    title: 'Title song "the suite life karan & kabir"',
-    author: 'Rishabh Yadav',
-  },
-  aeDKMVB3zuA: {
-    title: 'Spongebob Squarepants Theme Song - Hindi',
-    author: 'CartoonTv India',
-  },
-  'fk-GVUEOOfU': {
-    title: 'Art Attack intro hindi /Disney Channel/Cartoon Worlds',
-    author: 'Cartoon Worlds',
-  },
-  W6hRXrwqsxA: {
-    title: "Takeshi's Castle - Challenge's Theme",
-    author: 'JGAdventureZone',
-  },
-  PkL38ClCfdQ: {
-    title: "Krishna||Cartoon network title song||Sri Krishna Janmashtami||90's",
-    author: 'Nostalgia Vault',
-  },
-  qlv3fk8xvfI: {
-    title: 'Horrid Henry - Intro (Hindi, Series 1-4)',
-    author: 'ABTube27',
-  },
-  uykVxooNL70: {
-    title: 'Amul Milk -  Aage Badta Hai India',
-    author: 'Zee TV',
-  },
-  moRXlROyIWA: {
-    title: 'Fevicol Ads- Sofa 60 years | Fevicol New Ad | Classic Ad | Indian Ads Company',
-    author: 'Indian Ads Company',
-  },
-  SuAe2lziMqI: {
-    title: 'The Airtel Music',
-    author: 'Xavier Raj A',
-  },
-  '1oo1cEUlN9o': {
-    title: 'Fevicol Presents 1959 A Love Story',
-    author: 'Shemaroo Bengali',
-  },
-  p580FsZClv0: {
-    title: 'Center fruit final 45 sec.mov',
-    author: 'Abhishek Singh',
-  },
-  wpj2qkaE7YQ: {
-    title: 'Washing Powder Nirma - Historic ad - Edit 1',
-    author: 'Kailash Surendranath',
-  },
-  QFoMcZI9vRg: {
-    title: "Vicco Turmeric Skin Cream: 24 Carat Beauty... the nature's way",
-    author: 'Vicco Labs',
-  },
-  S6RbjC1sUXU: {
-    title: 'TMKOC - RELAXING BGM',
-    author: 'Bhushan K',
-  },
-  'fndUvbC-MCQ': {
-    title: 'Nani Teri Morni | Nani Teri Morni Ko Mor Le Gaye | Zappy Toon Rhymes',
-    author: 'Zappy Toon Rhymes',
-  },
-};
 
 const playlistsButton = document.getElementById('playlistsButton');
 const songsButton = document.getElementById('songsButton');
@@ -364,7 +76,9 @@ let playlistLoadAttempts = 0;
 let playlistReadyRendered = false;
 let activePlaylistId = '';
 let playerReadyFallbackAttempts = 0;
-let fallbackPlaylistIndex = 0;
+let runtimePlaylistIndex = 0;
+let runtimePlaylistItems = [];
+let runtimePlaylistRequest = null;
 let playerMuted = false;
 let previousVolumeLevel = 50;
 
@@ -387,11 +101,134 @@ function parsePlaylistId(value) {
 }
 
 function getPlaylistLoadConfig(playlistId) {
-  if (playlistId === YOUTUBE_PLAYLIST_FALLBACK_ID) {
-    return { list: YOUTUBE_PLAYLIST_FALLBACK_VIDEO_IDS.slice() };
+  const runtimeIds = getRuntimePlaylistIds();
+  if (runtimeIds.length) {
+    return { list: runtimeIds };
   }
 
   return { list: playlistId, listType: 'playlist' };
+}
+
+function getYouTubePlaylistSourceUrl(playlistId) {
+  const url = new URL('https://www.youtube.com/playlist');
+  url.searchParams.set('list', playlistId);
+  url.searchParams.set('_', String(Date.now()));
+  return url.toString();
+}
+
+function getTextValue(value) {
+  if (!value) return '';
+  if (typeof value.simpleText === 'string') return value.simpleText;
+  if (Array.isArray(value.runs)) return value.runs.map((run) => run.text || '').join('');
+  return '';
+}
+
+function escapeHtml(value) {
+  return String(value).replace(/[&<>"']/g, (char) => ({
+    '&': '&amp;',
+    '<': '&lt;',
+    '>': '&gt;',
+    '"': '&quot;',
+    "'": '&#39;',
+  }[char]));
+}
+
+function extractYtInitialData(html) {
+  const marker = 'var ytInitialData = ';
+  const markerIndex = html.indexOf(marker);
+  const start = html.indexOf('{', markerIndex >= 0 ? markerIndex : 0);
+  if (start < 0) return null;
+
+  let depth = 0;
+  let inString = false;
+  let escaped = false;
+  for (let i = start; i < html.length; i += 1) {
+    const char = html[i];
+    if (inString) {
+      if (escaped) {
+        escaped = false;
+      } else if (char === '\\') {
+        escaped = true;
+      } else if (char === '"') {
+        inString = false;
+      }
+      continue;
+    }
+    if (char === '"') {
+      inString = true;
+    } else if (char === '{') {
+      depth += 1;
+    } else if (char === '}') {
+      depth -= 1;
+      if (depth === 0) return JSON.parse(html.slice(start, i + 1));
+    }
+  }
+  return null;
+}
+
+function collectPlaylistItems(node, items = [], seen = new Set()) {
+  if (!node || typeof node !== 'object') return items;
+
+  if (node.playlistVideoRenderer) {
+    const renderer = node.playlistVideoRenderer;
+    const videoId = renderer.videoId;
+    if (videoId && !seen.has(videoId)) {
+      seen.add(videoId);
+      items.push({
+        id: videoId,
+        title: getTextValue(renderer.title) || videoId,
+        author: getTextValue(renderer.shortBylineText) || getTextValue(renderer.longBylineText),
+      });
+    }
+  }
+
+  Object.values(node).forEach((value) => collectPlaylistItems(value, items, seen));
+  return items;
+}
+
+async function fetchLivePlaylistItems(playlistId) {
+  const sourceUrl = getYouTubePlaylistSourceUrl(playlistId);
+  const errors = [];
+
+  for (const createUrl of PLAYLIST_SOURCE_PROXIES) {
+    const requestUrl = createUrl(sourceUrl);
+    try {
+      const response = await fetch(requestUrl, {
+        cache: 'no-store',
+        credentials: 'omit',
+      });
+      if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+      const html = await response.text();
+      const initialData = extractYtInitialData(html);
+      const items = initialData ? collectPlaylistItems(initialData) : [];
+      if (items.length) return items;
+
+      throw new Error('No playlist items found');
+    } catch (error) {
+      errors.push(`${requestUrl}: ${error.message}`);
+    }
+  }
+
+  throw new Error(errors.join(' | '));
+}
+
+async function refreshRuntimePlaylist(playlistId) {
+  if (!runtimePlaylistRequest) {
+    const currentVideoId = getCurrentVideoMeta().videoId || getRuntimePlaylistIds()[runtimePlaylistIndex] || '';
+    runtimePlaylistRequest = fetchLivePlaylistItems(playlistId)
+      .then((items) => {
+        runtimePlaylistItems = items;
+        const currentIndex = currentVideoId ? getRuntimePlaylistIds().indexOf(currentVideoId) : -1;
+        runtimePlaylistIndex = currentIndex >= 0 ? currentIndex : Math.min(runtimePlaylistIndex, items.length - 1);
+        return items;
+      })
+      .finally(() => {
+        runtimePlaylistRequest = null;
+      });
+  }
+
+  return runtimePlaylistRequest;
 }
 
 function clearTimer(timerRef) {
@@ -467,6 +304,7 @@ function markProgressAdvancing() {
 }
 
 function resetVideoTracking(videoId, playlistIndex) {
+  syncRuntimePlaylistIndex(videoId, playlistIndex);
   const nextKey = videoId ? `video:${videoId}` : playlistIndex >= 0 ? `index:${playlistIndex}` : '';
   if (nextKey && nextKey !== trackedVideoKey) {
     trackedVideoKey = nextKey;
@@ -486,16 +324,33 @@ function getVolumeControlLevel() {
   return Math.min(100, Math.max(0, level));
 }
 
-function getFallbackTrackInfo(videoId) {
-  return YOUTUBE_PLAYLIST_FALLBACK_TRACK_INFO[videoId] || {};
+function getRuntimePlaylistIds() {
+  return runtimePlaylistItems.map((item) => item.id);
+}
+
+function getRuntimeTrackInfo(videoId) {
+  return runtimePlaylistItems.find((item) => item.id === videoId) || {};
+}
+
+function isUsingRuntimePlaylist() {
+  return activePlaylistId && runtimePlaylistItems.length > 0;
+}
+
+function syncRuntimePlaylistIndex(videoId, playlistIndex) {
+  if (!isUsingRuntimePlaylist()) return;
+  const ids = getRuntimePlaylistIds();
+  const nextIndex = videoId ? ids.indexOf(videoId) : playlistIndex;
+  if (nextIndex >= 0 && nextIndex < ids.length) {
+    runtimePlaylistIndex = nextIndex;
+  }
 }
 
 function getTrackTitle(videoId, titleMap = new Map()) {
   const mappedTitle = titleMap.get(videoId);
   if (mappedTitle) return mappedTitle;
 
-  const fallbackTrackInfo = getFallbackTrackInfo(videoId);
-  return fallbackTrackInfo.title || 'Unknown track';
+  const runtimeTrackInfo = getRuntimeTrackInfo(videoId);
+  return runtimeTrackInfo.title || 'Unknown track';
 }
 
 function syncVolumeToControl() {
@@ -539,17 +394,15 @@ function toggleMute(event) {
 }
 
 function getPlaylistSnapshot() {
+  if (isUsingRuntimePlaylist()) {
+    return { ids: getRuntimePlaylistIds(), index: runtimePlaylistIndex };
+  }
+
   if (!player || typeof player.getPlaylist !== 'function') {
     return { ids: [], index: -1 };
   }
-  let ids = player.getPlaylist() || [];
-  let index = typeof player.getPlaylistIndex === 'function' ? player.getPlaylistIndex() : -1;
-  if (!ids.length && activePlaylistId === YOUTUBE_PLAYLIST_FALLBACK_ID) {
-    ids = YOUTUBE_PLAYLIST_FALLBACK_VIDEO_IDS;
-    index = fallbackPlaylistIndex;
-  } else if (activePlaylistId === YOUTUBE_PLAYLIST_FALLBACK_ID) {
-    index = fallbackPlaylistIndex;
-  }
+  const ids = player.getPlaylist() || [];
+  const index = typeof player.getPlaylistIndex === 'function' ? player.getPlaylistIndex() : -1;
   return { ids, index };
 }
 
@@ -662,21 +515,17 @@ function createYouTubePlayer() {
   schedulePlayerReadyFallback();
 }
 
-function isUsingFallbackPlaylist() {
-  return activePlaylistId === YOUTUBE_PLAYLIST_FALLBACK_ID;
-}
-
 function normalizePlaylistIndex(index, playlistLength) {
   if (!playlistLength) return -1;
   return ((index % playlistLength) + playlistLength) % playlistLength;
 }
 
-function playFallbackVideoAtIndex(index) {
+function playRuntimePlaylistVideoAtIndex(index) {
   const { ids } = getPlaylistSnapshot();
   const nextIndex = normalizePlaylistIndex(index, ids.length);
   if (nextIndex < 0 || typeof player.loadVideoById !== 'function') return false;
 
-  fallbackPlaylistIndex = nextIndex;
+  runtimePlaylistIndex = nextIndex;
   resetStuckTracking();
   updateTrackInfo();
   player.loadVideoById(ids[nextIndex]);
@@ -764,7 +613,7 @@ function setInitialPlayerState() {
   volumeControl.disabled = false;
 }
 
-function loadPlaylist() {
+async function loadPlaylist() {
   const playlistId = parsePlaylistId(YOUTUBE_PLAYLIST_ID);
   if (!playlistId || playlistId === 'PASTE_MY_PLAYLIST_ID_HERE') {
     showPlayerError('Please set YOUTUBE_PLAYLIST_ID to a valid playlist ID.');
@@ -780,12 +629,19 @@ function loadPlaylist() {
   playlistReady = false;
   playlistReadyRendered = false;
   expectPlayback = false;
-  fallbackPlaylistIndex = 0;
+  runtimePlaylistIndex = 0;
+  runtimePlaylistItems = [];
   loadStartedAt = Date.now();
   activePlaylistId = playlistId;
   navigationVersion += 1;
   playlistLoadAttempts = 0;
   clearPlaylistLoadRetryTimer();
+
+  try {
+    await refreshRuntimePlaylist(playlistId);
+  } catch (error) {
+    console.warn('[Nostalgia] Could not fetch current playlist source:', error);
+  }
 
   attemptPlaylistLoad(playlistId);
 }
@@ -796,11 +652,11 @@ function attemptPlaylistLoad(playlistId) {
   playlistLoadAttempts += 1;
 
   const playlistLoadConfig = getPlaylistLoadConfig(playlistId);
-  let loadedFromFallback = false;
+  let loadedFromRuntimePlaylist = false;
   if (Array.isArray(playlistLoadConfig.list)) {
     player.loadPlaylist(playlistLoadConfig.list, 0, 0, 'large');
-    fallbackPlaylistIndex = 0;
-    loadedFromFallback = markPlaylistReady();
+    runtimePlaylistIndex = 0;
+    loadedFromRuntimePlaylist = markPlaylistReady();
   } else {
     player.loadPlaylist({
       ...playlistLoadConfig,
@@ -809,7 +665,7 @@ function attemptPlaylistLoad(playlistId) {
     });
   }
 
-  if (loadedFromFallback) return;
+  if (loadedFromRuntimePlaylist) return;
 
   playlistLoadRetryTimer = setTimeout(() => {
     playlistLoadRetryTimer = null;
@@ -899,7 +755,7 @@ function performAutoSkip(reason) {
   navigationVersion += 1;
   const skipVersion = navigationVersion;
 
-  if (isUsingFallbackPlaylist() && playFallbackVideoAtIndex(beforeIndex + 1)) {
+  if (isUsingRuntimePlaylist() && playRuntimePlaylistVideoAtIndex(beforeIndex + 1)) {
     clearNavVerifyTimer();
     navVerifyTimer = setTimeout(() => {
       navVerifyTimer = null;
@@ -940,7 +796,7 @@ function verifyNavigation(previousVideoId, previousIndex, playlistIds) {
   lockNavigation();
   navigationVersion += 1;
   resetStuckTracking();
-  if (isUsingFallbackPlaylist() && playFallbackVideoAtIndex(targetIndex)) {
+  if (isUsingRuntimePlaylist() && playRuntimePlaylistVideoAtIndex(targetIndex)) {
     return;
   }
   if (typeof player.playVideoAt === 'function') {
@@ -1060,6 +916,16 @@ function toggleSongsPopover() {
   playlistPopover.classList.add('hidden');
   if (!songsPopover.classList.contains('hidden')) {
     renderSongsItems();
+    const playlistId = parsePlaylistId(YOUTUBE_PLAYLIST_ID);
+    if (playlistId) {
+      refreshRuntimePlaylist(playlistId)
+        .then(() => {
+          if (!songsPopover.classList.contains('hidden')) renderSongsItems();
+        })
+        .catch((error) => {
+          console.warn('[Nostalgia] Could not refresh current playlist for Songs panel:', error);
+        });
+    }
   }
 }
 
@@ -1121,7 +987,7 @@ function renderSongsItems() {
       return `
         <button class="popover-song" type="button" data-index="${idx}" data-video-id="${videoId}">
           <img class="popover-song-thumb" src="${thumbnail}" alt="" loading="lazy" />
-          <span class="popover-song-title">${title}</span>
+          <span class="popover-song-title">${escapeHtml(title)}</span>
         </button>`;
     })
     .join('');
@@ -1138,7 +1004,7 @@ function renderSongsItems() {
 
 function playVideoAtIndex(index) {
   withNavigation(() => {
-    if (isUsingFallbackPlaylist() && playFallbackVideoAtIndex(index)) {
+    if (isUsingRuntimePlaylist() && playRuntimePlaylistVideoAtIndex(index)) {
       return;
     }
     if (typeof player.playVideoAt === 'function') {
@@ -1199,14 +1065,14 @@ function updateTrackInfo() {
   if (!player || typeof player.getVideoData !== 'function') return;
   const videoData = player.getVideoData() || {};
   const { ids, index } = getPlaylistSnapshot();
-  const fallbackIndex = index >= 0 && index < ids.length ? index : 0;
-  const fallbackVideoId = ids.length > 0 ? ids[fallbackIndex] : '';
+  const runtimeIndex = index >= 0 && index < ids.length ? index : 0;
+  const runtimeVideoId = ids.length > 0 ? ids[runtimeIndex] : '';
   const playerVideoId = videoData.video_id || '';
-  const videoId = isUsingFallbackPlaylist() && fallbackVideoId ? fallbackVideoId : playerVideoId;
-  const fallbackTrackInfo = getFallbackTrackInfo(videoId);
+  const videoId = isUsingRuntimePlaylist() && runtimeVideoId ? runtimeVideoId : playerVideoId;
+  const runtimeTrackInfo = getRuntimeTrackInfo(videoId);
   const canUsePlayerMetadata = !playerVideoId || playerVideoId === videoId;
-  const title = (canUsePlayerMetadata && videoData.title) || fallbackTrackInfo.title || 'Playing from YouTube playlist';
-  const author = (canUsePlayerMetadata && videoData.author) || fallbackTrackInfo.author || 'YouTube playlist';
+  const title = (canUsePlayerMetadata && videoData.title) || runtimeTrackInfo.title || 'Playing from YouTube playlist';
+  const author = (canUsePlayerMetadata && videoData.author) || runtimeTrackInfo.author || 'YouTube playlist';
   trackTitle.textContent = title;
   trackSubtitle.textContent = author;
   if (videoId) {
@@ -1254,7 +1120,7 @@ function togglePlayPause() {
     userPaused = false;
     expectPlayback = true;
     resetStuckTracking();
-    if (isUsingFallbackPlaylist() && !getCurrentVideoMeta().videoId && playFallbackVideoAtIndex(getPlaylistSnapshot().index)) {
+    if (isUsingRuntimePlaylist() && !getCurrentVideoMeta().videoId && playRuntimePlaylistVideoAtIndex(getPlaylistSnapshot().index)) {
       return;
     }
     player.playVideo();
@@ -1263,7 +1129,7 @@ function togglePlayPause() {
 
 function playPrevious() {
   withNavigation(() => {
-    if (isUsingFallbackPlaylist() && playFallbackVideoAtIndex(getPlaylistSnapshot().index - 1)) {
+    if (isUsingRuntimePlaylist() && playRuntimePlaylistVideoAtIndex(getPlaylistSnapshot().index - 1)) {
       return;
     }
     if (typeof player.previousVideo === 'function') {
@@ -1274,7 +1140,7 @@ function playPrevious() {
 
 function playNext() {
   withNavigation(() => {
-    if (isUsingFallbackPlaylist() && playFallbackVideoAtIndex(getPlaylistSnapshot().index + 1)) {
+    if (isUsingRuntimePlaylist() && playRuntimePlaylistVideoAtIndex(getPlaylistSnapshot().index + 1)) {
       return;
     }
     if (typeof player.nextVideo === 'function') {

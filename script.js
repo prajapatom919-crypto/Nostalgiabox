@@ -60,6 +60,12 @@ const YOUTUBE_PLAYLIST_FALLBACK_VIDEO_IDS = [
   'S6RbjC1sUXU',
   'fndUvbC-MCQ',
 ];
+const YOUTUBE_PLAYLIST_FALLBACK_TRACK_INFO = {
+  jQXGbT839f0: {
+    title: 'Vicky aur Vetal Intro Theme Opening Song HD',
+    author: 'Back to 2000s',
+  },
+};
 
 const playlistsButton = document.getElementById('playlistsButton');
 const songsButton = document.getElementById('songsButton');
@@ -91,6 +97,8 @@ const MAX_SKIPS_PER_VIDEO = 2;
 const LOAD_GRACE_MS = 12000;
 const PLAYLIST_LOAD_RETRY_MS = 4000;
 const MAX_PLAYLIST_LOAD_ATTEMPTS = 5;
+const PLAYER_READY_FALLBACK_MS = 1000;
+const MAX_PLAYER_READY_FALLBACK_ATTEMPTS = 30;
 
 let deferredInstallPrompt = null;
 let installListenerAttached = false;
@@ -124,6 +132,9 @@ let playlistReady = false;
 let loadStartedAt = 0;
 let expectPlayback = false;
 let playlistLoadAttempts = 0;
+let playlistReadyRendered = false;
+let activePlaylistId = '';
+let playerReadyFallbackAttempts = 0;
 
 function parsePlaylistId(value) {
   if (!value) return '';
@@ -172,6 +183,29 @@ function clearNavVerifyTimer() {
 
 function clearPlayerReadyFallbackTimer() {
   playerReadyFallbackTimer = clearTimer(playerReadyFallbackTimer);
+}
+
+function schedulePlayerReadyFallback() {
+  clearPlayerReadyFallbackTimer();
+  playerReadyFallbackTimer = setTimeout(() => {
+    playerReadyFallbackTimer = null;
+    if (playerReadyHandled) return;
+
+    if (
+      player &&
+      typeof player.getPlayerState === 'function' &&
+      typeof player.loadPlaylist === 'function'
+    ) {
+      console.warn('[Nostalgia] YouTube onReady was missed; continuing with callable player.');
+      onPlayerReady();
+      return;
+    }
+
+    playerReadyFallbackAttempts += 1;
+    if (playerReadyFallbackAttempts < MAX_PLAYER_READY_FALLBACK_ATTEMPTS) {
+      schedulePlayerReadyFallback();
+    }
+  }, PLAYER_READY_FALLBACK_MS);
 }
 
 function clearPlaylistLoadRetryTimer() {
@@ -230,8 +264,12 @@ function getPlaylistSnapshot() {
   if (!player || typeof player.getPlaylist !== 'function') {
     return { ids: [], index: -1 };
   }
-  const ids = player.getPlaylist() || [];
-  const index = typeof player.getPlaylistIndex === 'function' ? player.getPlaylistIndex() : -1;
+  let ids = player.getPlaylist() || [];
+  let index = typeof player.getPlaylistIndex === 'function' ? player.getPlaylistIndex() : -1;
+  if (!ids.length && activePlaylistId === YOUTUBE_PLAYLIST_FALLBACK_ID) {
+    ids = YOUTUBE_PLAYLIST_FALLBACK_VIDEO_IDS;
+    index = index >= 0 ? index : 0;
+  }
   return { ids, index };
 }
 
@@ -262,7 +300,14 @@ function markPlaylistReady() {
   const { ids } = getPlaylistSnapshot();
   const meta = getCurrentVideoMeta();
   if (ids.length > 0 || meta.videoId) {
+    const wasReady = playlistReady;
     playlistReady = true;
+    if (!wasReady || !playlistReadyRendered) {
+      playlistReadyRendered = true;
+      clearPlaylistLoadRetryTimer();
+      updateTrackInfo();
+      updateProgress();
+    }
   }
   return playlistReady;
 }
@@ -310,6 +355,7 @@ function createYouTubePlayer() {
     return;
   }
   playerInitializing = true;
+  playerReadyFallbackAttempts = 0;
   console.log('[Nostalgia] YouTube IFrame API ready, creating player...');
   player = new YT.Player('player', {
     height: '1',
@@ -333,19 +379,7 @@ function createYouTubePlayer() {
     },
   });
 
-  clearPlayerReadyFallbackTimer();
-  playerReadyFallbackTimer = setTimeout(() => {
-    playerReadyFallbackTimer = null;
-    if (
-      !playerReadyHandled &&
-      player &&
-      typeof player.getPlayerState === 'function' &&
-      typeof player.loadPlaylist === 'function'
-    ) {
-      console.warn('[Nostalgia] YouTube onReady was missed; continuing with callable player.');
-      onPlayerReady();
-    }
-  }, 3000);
+  schedulePlayerReadyFallback();
 }
 
 function onYouTubeIframeAPIReady() {
@@ -432,8 +466,10 @@ function loadPlaylist() {
   trackedVideoKey = null;
   trackedPlaylistIndex = -1;
   playlistReady = false;
+  playlistReadyRendered = false;
   expectPlayback = false;
   loadStartedAt = Date.now();
+  activePlaylistId = playlistId;
   navigationVersion += 1;
   playlistLoadAttempts = 0;
   clearPlaylistLoadRetryTimer();
@@ -447,8 +483,10 @@ function attemptPlaylistLoad(playlistId) {
   playlistLoadAttempts += 1;
 
   const playlistLoadConfig = getPlaylistLoadConfig(playlistId);
+  let loadedFromFallback = false;
   if (Array.isArray(playlistLoadConfig.list)) {
     player.loadPlaylist(playlistLoadConfig.list, 0, 0, 'large');
+    loadedFromFallback = markPlaylistReady();
   } else {
     player.loadPlaylist({
       ...playlistLoadConfig,
@@ -456,6 +494,8 @@ function attemptPlaylistLoad(playlistId) {
       suggestedQuality: 'large',
     });
   }
+
+  if (loadedFromFallback) return;
 
   playlistLoadRetryTimer = setTimeout(() => {
     playlistLoadRetryTimer = null;
@@ -830,10 +870,14 @@ function onPlayerStateChange(event) {
 
 function updateTrackInfo() {
   if (!player || typeof player.getVideoData !== 'function') return;
-  const videoData = player.getVideoData();
-  const videoId = videoData.video_id;
-  const title = videoData.title || 'Playing from YouTube playlist';
-  const author = videoData.author || 'YouTube playlist';
+  const videoData = player.getVideoData() || {};
+  const { ids, index } = getPlaylistSnapshot();
+  const fallbackIndex = index >= 0 && index < ids.length ? index : 0;
+  const fallbackVideoId = ids.length > 0 ? ids[fallbackIndex] : '';
+  const videoId = videoData.video_id || fallbackVideoId;
+  const fallbackTrackInfo = YOUTUBE_PLAYLIST_FALLBACK_TRACK_INFO[videoId] || {};
+  const title = videoData.title || fallbackTrackInfo.title || 'Playing from YouTube playlist';
+  const author = videoData.author || fallbackTrackInfo.author || 'YouTube playlist';
   trackTitle.textContent = title;
   trackSubtitle.textContent = author;
   if (videoId) {

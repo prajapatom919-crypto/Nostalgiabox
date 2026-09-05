@@ -65,6 +65,234 @@ const YOUTUBE_PLAYLIST_FALLBACK_TRACK_INFO = {
     title: 'Vicky aur Vetal Intro Theme Opening Song HD',
     author: 'Back to 2000s',
   },
+  UNJKp605eyA: {
+    title: 'Mr Bean The Animated Series Theme Song (From "Mr Bean The Animated Series")',
+    author: 'Geek Music - Topic',
+  },
+  oAMsaTCrK5c: {
+    title: 'Doraemon title song hindi',
+    author: 'Siddhanta Gadanayak',
+  },
+  QDcmC3lwAAw: {
+    title: 'Doraemon movie steel troops sad song {sabse phele hai pyar} in hindi',
+    author: 'All tech of anime',
+  },
+  ga7XhN00BNU: {
+    title: 'Shin Chan Theme Song in HINDI | #hungama #youtube',
+    author: 'Introverted_Kid',
+  },
+  '0QtQmLeuqjw': {
+    title: 'Ninja Hattori Classic Outro - Lyrical Video | LyricalLyfe',
+    author: 'LyricalLyfe Toons',
+  },
+  '5NzQgJVwFGA': {
+    title: 'Hatim title song - YouTube',
+    author: 'shaan production',
+  },
+  LS647DyRDE4: {
+    title: 'Har Kisi Me Hai Nobita (Lyrics) - Doraemon',
+    author: 'Anime CoolFire',
+  },
+  LOM1JpCkfdc: {
+    title: 'Door Na Ho Jaaye..Sad Version OST By Pamela Jain',
+    author: 'Melodious Background Music',
+  },
+  '4eO14TOr1Fw': {
+    title: 'Yeh Hai Mohabbatein Title Song (Lyrics) | Star Plus | serial',
+    author: 'A2Z Lyrics',
+  },
+  Wofv6tVg7cM: {
+    title: 'Miley jab hum tum title song full || T.V serial song||',
+    author: 'Vandu Shetty',
+  },
+  TJz6rRoMqnM: {
+    title: 'Baati Hum',
+    author: 'Riaz Miya - Topic',
+  },
+  mEEsjJjB40Q: {
+    title: 'Kiteretsu opening theme song in Hindi [HD]',
+    author: 'Back to 2000s',
+  },
+  'JFplRVx-M1I': {
+    title: 'Ben 10 - Theme song lyrics [Hindi]',
+    author: 'excitingworld05',
+  },
+  '0Ur6PJhqJ9A': {
+    title: 'Pokemon Hindi Theme Song - Lyrical Video | LyricalLyfe',
+    author: 'LyricalLyfe Toons',
+  },
+  jxzrBaHsL88: {
+    title: 'Perman Theme Opening || Lyrics Video (Hindi)',
+    author: 'excitingworld05',
+  },
+  'KT0-Rf9ykIY': {
+    title: 'Gali Gali Sim Sim Old Theme song in hindi / old childhood songs / Cartoon Worlds',
+    author: 'Cartoon Worlds',
+  },
+  'x7q7hDs-OWY': {
+    title: 'shaka laka boom boom Title song - Shakalaka Boom Boom',
+    author: 'Kutrala saral',
+  },
+  trafQj2lJzE: {
+    title: 'Jungle Jungle Baat Chali Hai HD | The The Jungle Book Hindi | Mowgli Story | Opening Song |',
+    author: 'Down The Memory Lane',
+  },
+  PlQ4ojWNu6c: {
+    title: 'Tom & Jerry',
+    author: 'Cartoon Theme Players - Topic',
+  },
+  RmvpyuRaAmg: {
+    title: 'Honey Bunny Song | Paul Shah | Prakriti Shrestha | Nitin Chand',
+    author: 'Ur Style Network',
+  },
+  x8G2GqNkiEY: {
+    title: 'Ninja Hattori Opening Song In Hindi',
+    author: 'Kaur Jessica',
+  },
+  A7pJUB_88mw: {
+    title: 'Watch Hagemaru Opening Theme Song in Hindi Remastered HD 2K NOW',
+    author: 'Lauda Singh',
+  },
+  AujzRnJIDCs: {
+    title: 'Phineas And Ferb Theme Song (V1) (Hindi, V1)',
+    author: 'MAX TV Channel',
+  },
+  xcDJ4PEiy8Q: {
+    title: 'Kochikame Opening Song | Wah! Dekhta hai Kya? [In Hindi](1080P_HD)Toon Zaraow',
+    author: 'Toon Zaraow',
+  },
+  msCFFPc48Ig: {
+    title: 'Best of luck Nikki Title Theme Song HD',
+    author: 'Back to 2000s',
+  },
+  pw7jG9Xaf08: {
+    title: 'Ultra B (Theme) Song Hindi Cutest cartoon',
+    author: 'Abhishek Thakur',
+  },
+  'D9xW-K8DiPM': {
+    title: 'Keymon ache ( Title Track) | Cartoons Songs | Ranen Adhikary | RBM RECORD',
+    author: 'RBM Record [RMG] - 10M Views - 4 hours ago',
+  },
+  '1IOOX6uU1IU': {
+    title: "Vikram Aur Betaal Title Intro Song | 80's Old Doordarshan TV serial | Arun Govil, Sajjan | 720p",
+    author: 'Sadabahar Gaane & Other Collections',
+  },
+  MtGnn6qMTGQ: {
+    title: 'Saath Nibhana Saathiya Title song | Alka Yagnik | Devoleena Bhattacharya | Serial songs',
+    author: 'NM Melodies',
+  },
+  AVTZvboyR_M: {
+    title: 'Jadoo Ye Kya Chal Gaya | Ye Rishta Kya Kahlata Hai | Akshara | Serial song | Alka Yagnik | Hina Khan',
+    author: 'NM Melodies',
+  },
+  _2CPr2G0NPo: {
+    title: 'Main Hoon Ghatothkach - Child',
+    author: 'Nadeem Shravan - Topic',
+  },
+  jCcOFk_Lou8: {
+    title: 'Bob the Builder Theme Song in Hindi | HD',
+    author: 'old hindi cartoons',
+  },
+  TfN906USOt8: {
+    title: 'Phineas and Ferb - Theme Song in Hindi [HQ]',
+    author: 'TheClubCartoon',
+  },
+  '6h5DtYsIHWU': {
+    title: 'Jake and The Never Land Pirates | Title Song | Hindi | Disney Junior India',
+    author: 'Disney Junior India',
+  },
+  'd3UmN-0-3Rg': {
+    title: 'Hero   Bhakti hi Shakti Hai Hindi Opening',
+    author: 'Indian Anime Channel',
+  },
+  jymJETc3V8c: {
+    title: 'GreenGoldKids - Chhota Bheem Title Song',
+    author: 'Green Gold Kids',
+  },
+  '8tMzpwMa4xk': {
+    title: 'Courage The Cowardly Dog - Hindi OP + ED',
+    author: "Ash 'Tyson' Yagami",
+  },
+  'FJV2C-O7IPU': {
+    title: 'Kid VS. Kat Theme Song',
+    author: 'annie',
+  },
+  '7LL0gr94GJA': {
+    title: 'Dragon Tales Intro Hindi | Dragon Tales Hindi Opening | Dragon Tales Theme Song Hindi | Dragon Tales',
+    author: "Back To 90's",
+  },
+  PFulYCqdXnQ: {
+    title: 'Popeye The Sailor Man Intro Theme Song',
+    author: "Back To 90's",
+  },
+  'tf8NV-tUXXY': {
+    title: 'Oggy and the Cockroaches - ALL OPENINGS 1998 - 2018',
+    author: 'OGGY',
+  },
+  eaxigNna8hk: {
+    title: 'Power Rangers S.P.D. Opening Hindi',
+    author: "Back To 90's",
+  },
+  '2iIcCoEXBN0': {
+    title: 'Title song "the suite life karan & kabir"',
+    author: 'Rishabh Yadav',
+  },
+  aeDKMVB3zuA: {
+    title: 'Spongebob Squarepants Theme Song - Hindi',
+    author: 'CartoonTv India',
+  },
+  'fk-GVUEOOfU': {
+    title: 'Art Attack intro hindi /Disney Channel/Cartoon Worlds',
+    author: 'Cartoon Worlds',
+  },
+  W6hRXrwqsxA: {
+    title: "Takeshi's Castle - Challenge's Theme",
+    author: 'JGAdventureZone',
+  },
+  PkL38ClCfdQ: {
+    title: "Krishna||Cartoon network title song||Sri Krishna Janmashtami||90's",
+    author: 'Nostalgia Vault',
+  },
+  qlv3fk8xvfI: {
+    title: 'Horrid Henry - Intro (Hindi, Series 1-4)',
+    author: 'ABTube27',
+  },
+  uykVxooNL70: {
+    title: 'Amul Milk -  Aage Badta Hai India',
+    author: 'Zee TV',
+  },
+  moRXlROyIWA: {
+    title: 'Fevicol Ads- Sofa 60 years | Fevicol New Ad | Classic Ad | Indian Ads Company',
+    author: 'Indian Ads Company',
+  },
+  SuAe2lziMqI: {
+    title: 'The Airtel Music',
+    author: 'Xavier Raj A',
+  },
+  '1oo1cEUlN9o': {
+    title: 'Fevicol Presents 1959 A Love Story',
+    author: 'Shemaroo Bengali',
+  },
+  p580FsZClv0: {
+    title: 'Center fruit final 45 sec.mov',
+    author: 'Abhishek Singh',
+  },
+  wpj2qkaE7YQ: {
+    title: 'Washing Powder Nirma - Historic ad - Edit 1',
+    author: 'Kailash Surendranath',
+  },
+  QFoMcZI9vRg: {
+    title: "Vicco Turmeric Skin Cream: 24 Carat Beauty... the nature's way",
+    author: 'Vicco Labs',
+  },
+  S6RbjC1sUXU: {
+    title: 'TMKOC - RELAXING BGM',
+    author: 'Bhushan K',
+  },
+  'fndUvbC-MCQ': {
+    title: 'Nani Teri Morni | Nani Teri Morni Ko Mor Le Gaye | Zappy Toon Rhymes',
+    author: 'Zappy Toon Rhymes',
+  },
 };
 
 const playlistsButton = document.getElementById('playlistsButton');
@@ -135,6 +363,7 @@ let playlistLoadAttempts = 0;
 let playlistReadyRendered = false;
 let activePlaylistId = '';
 let playerReadyFallbackAttempts = 0;
+let fallbackPlaylistIndex = 0;
 
 function parsePlaylistId(value) {
   if (!value) return '';
@@ -268,7 +497,9 @@ function getPlaylistSnapshot() {
   let index = typeof player.getPlaylistIndex === 'function' ? player.getPlaylistIndex() : -1;
   if (!ids.length && activePlaylistId === YOUTUBE_PLAYLIST_FALLBACK_ID) {
     ids = YOUTUBE_PLAYLIST_FALLBACK_VIDEO_IDS;
-    index = index >= 0 ? index : 0;
+    index = fallbackPlaylistIndex;
+  } else if (activePlaylistId === YOUTUBE_PLAYLIST_FALLBACK_ID) {
+    index = fallbackPlaylistIndex;
   }
   return { ids, index };
 }
@@ -382,6 +613,27 @@ function createYouTubePlayer() {
   schedulePlayerReadyFallback();
 }
 
+function isUsingFallbackPlaylist() {
+  return activePlaylistId === YOUTUBE_PLAYLIST_FALLBACK_ID;
+}
+
+function normalizePlaylistIndex(index, playlistLength) {
+  if (!playlistLength) return -1;
+  return ((index % playlistLength) + playlistLength) % playlistLength;
+}
+
+function playFallbackVideoAtIndex(index) {
+  const { ids } = getPlaylistSnapshot();
+  const nextIndex = normalizePlaylistIndex(index, ids.length);
+  if (nextIndex < 0 || typeof player.loadVideoById !== 'function') return false;
+
+  fallbackPlaylistIndex = nextIndex;
+  resetStuckTracking();
+  updateTrackInfo();
+  player.loadVideoById(ids[nextIndex]);
+  return true;
+}
+
 function onYouTubeIframeAPIReady() {
   createYouTubePlayer();
 }
@@ -468,6 +720,7 @@ function loadPlaylist() {
   playlistReady = false;
   playlistReadyRendered = false;
   expectPlayback = false;
+  fallbackPlaylistIndex = 0;
   loadStartedAt = Date.now();
   activePlaylistId = playlistId;
   navigationVersion += 1;
@@ -486,6 +739,7 @@ function attemptPlaylistLoad(playlistId) {
   let loadedFromFallback = false;
   if (Array.isArray(playlistLoadConfig.list)) {
     player.loadPlaylist(playlistLoadConfig.list, 0, 0, 'large');
+    fallbackPlaylistIndex = 0;
     loadedFromFallback = markPlaylistReady();
   } else {
     player.loadPlaylist({
@@ -535,7 +789,7 @@ function markSuccessfulPlayback() {
 
 function scheduleAutoSkip(reason, options = {}) {
   const { force = false } = options;
-  if (skipRecoveryTimer || navigationLocked) return;
+  if (skipRecoveryTimer || (navigationLocked && !force)) return;
   if (!force && !canRunRecoveryChecks()) return;
 
   const meta = getCurrentVideoMeta();
@@ -585,6 +839,16 @@ function performAutoSkip(reason) {
   navigationVersion += 1;
   const skipVersion = navigationVersion;
 
+  if (isUsingFallbackPlaylist() && playFallbackVideoAtIndex(beforeIndex + 1)) {
+    clearNavVerifyTimer();
+    navVerifyTimer = setTimeout(() => {
+      navVerifyTimer = null;
+      if (skipVersion !== navigationVersion) return;
+      verifyNavigation(before.videoId, beforeIndex, ids);
+    }, NAV_VERIFY_MS);
+    return;
+  }
+
   if (typeof player.nextVideo === 'function') {
     player.nextVideo();
   }
@@ -616,6 +880,9 @@ function verifyNavigation(previousVideoId, previousIndex, playlistIds) {
   lockNavigation();
   navigationVersion += 1;
   resetStuckTracking();
+  if (isUsingFallbackPlaylist() && playFallbackVideoAtIndex(targetIndex)) {
+    return;
+  }
   if (typeof player.playVideoAt === 'function') {
     player.playVideoAt(targetIndex);
   }
@@ -787,12 +1054,10 @@ function renderSongsItems() {
     console.warn('[Nostalgia] Could not read playlist titles from player:', e);
   }
 
-  // Fallback: if titleMap is empty, use video IDs as labels
-  const hasTitles = titleMap.size > 0;
-
   songsList.innerHTML = ids
     .map((videoId, idx) => {
-      const title = hasTitles ? (titleMap.get(videoId) || videoId) : videoId;
+      const fallbackTrackInfo = YOUTUBE_PLAYLIST_FALLBACK_TRACK_INFO[videoId] || {};
+      const title = titleMap.get(videoId) || fallbackTrackInfo.title || videoId;
       const thumbnail = `https://img.youtube.com/vi/${videoId}/default.jpg`;
       return `
         <button class="popover-song" type="button" data-index="${idx}" data-video-id="${videoId}">
@@ -814,6 +1079,9 @@ function renderSongsItems() {
 
 function playVideoAtIndex(index) {
   withNavigation(() => {
+    if (isUsingFallbackPlaylist() && playFallbackVideoAtIndex(index)) {
+      return;
+    }
     if (typeof player.playVideoAt === 'function') {
       player.playVideoAt(index);
     }
@@ -874,10 +1142,12 @@ function updateTrackInfo() {
   const { ids, index } = getPlaylistSnapshot();
   const fallbackIndex = index >= 0 && index < ids.length ? index : 0;
   const fallbackVideoId = ids.length > 0 ? ids[fallbackIndex] : '';
-  const videoId = videoData.video_id || fallbackVideoId;
+  const playerVideoId = videoData.video_id || '';
+  const videoId = isUsingFallbackPlaylist() && fallbackVideoId ? fallbackVideoId : playerVideoId;
   const fallbackTrackInfo = YOUTUBE_PLAYLIST_FALLBACK_TRACK_INFO[videoId] || {};
-  const title = videoData.title || fallbackTrackInfo.title || 'Playing from YouTube playlist';
-  const author = videoData.author || fallbackTrackInfo.author || 'YouTube playlist';
+  const canUsePlayerMetadata = !playerVideoId || playerVideoId === videoId;
+  const title = (canUsePlayerMetadata && videoData.title) || fallbackTrackInfo.title || 'Playing from YouTube playlist';
+  const author = (canUsePlayerMetadata && videoData.author) || fallbackTrackInfo.author || 'YouTube playlist';
   trackTitle.textContent = title;
   trackSubtitle.textContent = author;
   if (videoId) {
@@ -925,12 +1195,18 @@ function togglePlayPause() {
     userPaused = false;
     expectPlayback = true;
     resetStuckTracking();
+    if (isUsingFallbackPlaylist() && !getCurrentVideoMeta().videoId && playFallbackVideoAtIndex(getPlaylistSnapshot().index)) {
+      return;
+    }
     player.playVideo();
   }
 }
 
 function playPrevious() {
   withNavigation(() => {
+    if (isUsingFallbackPlaylist() && playFallbackVideoAtIndex(getPlaylistSnapshot().index - 1)) {
+      return;
+    }
     if (typeof player.previousVideo === 'function') {
       player.previousVideo();
     }
@@ -939,6 +1215,9 @@ function playPrevious() {
 
 function playNext() {
   withNavigation(() => {
+    if (isUsingFallbackPlaylist() && playFallbackVideoAtIndex(getPlaylistSnapshot().index + 1)) {
+      return;
+    }
     if (typeof player.nextVideo === 'function') {
       player.nextVideo();
     }

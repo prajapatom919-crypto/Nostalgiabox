@@ -7,12 +7,9 @@ const PLAYLIST_SOURCE_PROXIES = [
   },
 ];
 
-const playlistsButton = document.getElementById('playlistsButton');
 const songsButton = document.getElementById('songsButton');
 const installButton = document.getElementById('installButton');
-const playlistPopover = document.getElementById('playlistPopover');
 const songsPopover = document.getElementById('songsPopover');
-const playlistList = document.getElementById('playlistList');
 const songsList = document.getElementById('songsList');
 const trackTitle = document.getElementById('trackTitle');
 const trackSubtitle = document.getElementById('trackSubtitle');
@@ -578,7 +575,6 @@ function onPlayerReady() {
     playPauseButton.addEventListener('click', togglePlayPause);
     prevButton.addEventListener('click', playPrevious);
     nextButton.addEventListener('click', playNext);
-    playlistsButton.addEventListener('click', togglePlaylistPopover);
     songsButton.addEventListener('click', toggleSongsPopover);
     listenersAttached = true;
   }
@@ -903,17 +899,8 @@ function runHealthCheck() {
   markProgressAdvancing();
 }
 
-function togglePlaylistPopover() {
-  playlistPopover.classList.toggle('hidden');
-  songsPopover.classList.add('hidden');
-  if (!playlistPopover.classList.contains('hidden')) {
-    renderPlaylistItems();
-  }
-}
-
 function toggleSongsPopover() {
   songsPopover.classList.toggle('hidden');
-  playlistPopover.classList.add('hidden');
   if (!songsPopover.classList.contains('hidden')) {
     renderSongsItems();
     const playlistId = parsePlaylistId(YOUTUBE_PLAYLIST_ID);
@@ -942,18 +929,6 @@ function promptInstallApp() {
   if (isStandalone) return;
 
   window.alert('To add Nostalgia Box to your home screen, use your browser menu and choose "Install app" or "Add to Home Screen".');
-}
-
-function renderPlaylistItems() {
-  const playlistId = parsePlaylistId(YOUTUBE_PLAYLIST_ID);
-  if (!playlistId) {
-    playlistList.textContent = 'No playlist configured.';
-    return;
-  }
-  playlistList.innerHTML = `
-    <div class="popover-item">Playlist ID</div>
-    <div class="popover-value">${playlistId}</div>
-  `;
 }
 
 function renderSongsItems() {

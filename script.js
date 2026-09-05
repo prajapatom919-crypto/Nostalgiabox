@@ -1,4 +1,65 @@
 const YOUTUBE_PLAYLIST_ID = 'https://music.youtube.com/playlist?list=PLfcdDdq8aLR0&si=6Ys5o2e9_bCFoP2i';
+const YOUTUBE_PLAYLIST_FALLBACK_ID = 'PLfcdDdq8aLR0';
+const YOUTUBE_PLAYLIST_FALLBACK_VIDEO_IDS = [
+  'jQXGbT839f0',
+  'UNJKp605eyA',
+  'oAMsaTCrK5c',
+  'QDcmC3lwAAw',
+  'ga7XhN00BNU',
+  '0QtQmLeuqjw',
+  '5NzQgJVwFGA',
+  'LS647DyRDE4',
+  'LOM1JpCkfdc',
+  '4eO14TOr1Fw',
+  'Wofv6tVg7cM',
+  'TJz6rRoMqnM',
+  'mEEsjJjB40Q',
+  'JFplRVx-M1I',
+  '0Ur6PJhqJ9A',
+  'jxzrBaHsL88',
+  'KT0-Rf9ykIY',
+  'x7q7hDs-OWY',
+  'trafQj2lJzE',
+  'PlQ4ojWNu6c',
+  'RmvpyuRaAmg',
+  'x8G2GqNkiEY',
+  'A7pJUB_88mw',
+  'AujzRnJIDCs',
+  'xcDJ4PEiy8Q',
+  'msCFFPc48Ig',
+  'pw7jG9Xaf08',
+  'D9xW-K8DiPM',
+  '1IOOX6uU1IU',
+  'MtGnn6qMTGQ',
+  'AVTZvboyR_M',
+  '_2CPr2G0NPo',
+  'jCcOFk_Lou8',
+  'TfN906USOt8',
+  '6h5DtYsIHWU',
+  'd3UmN-0-3Rg',
+  'jymJETc3V8c',
+  '8tMzpwMa4xk',
+  'FJV2C-O7IPU',
+  '7LL0gr94GJA',
+  'PFulYCqdXnQ',
+  'tf8NV-tUXXY',
+  'eaxigNna8hk',
+  '2iIcCoEXBN0',
+  'aeDKMVB3zuA',
+  'fk-GVUEOOfU',
+  'W6hRXrwqsxA',
+  'PkL38ClCfdQ',
+  'qlv3fk8xvfI',
+  'uykVxooNL70',
+  'moRXlROyIWA',
+  'SuAe2lziMqI',
+  '1oo1cEUlN9o',
+  'p580FsZClv0',
+  'wpj2qkaE7YQ',
+  'QFoMcZI9vRg',
+  'S6RbjC1sUXU',
+  'fndUvbC-MCQ',
+];
 
 const playlistsButton = document.getElementById('playlistsButton');
 const songsButton = document.getElementById('songsButton');
@@ -66,11 +127,28 @@ let playlistLoadAttempts = 0;
 
 function parsePlaylistId(value) {
   if (!value) return '';
-  const url = value.trim();
-  const listMatch = url.match(/[?&]list=([A-Za-z0-9_-]+)/);
+  const playlistValue = value.trim();
+
+  try {
+    const parsedUrl = new URL(playlistValue);
+    const listParam = parsedUrl.searchParams.get('list');
+    if (listParam && /^[A-Za-z0-9_-]{10,}$/.test(listParam)) return listParam;
+  } catch {
+    // Fall through to raw ID handling for non-URL values.
+  }
+
+  const listMatch = playlistValue.match(/[?&]list=([A-Za-z0-9_-]+)/);
   if (listMatch) return listMatch[1];
-  if (/^[A-Za-z0-9_-]{10,}$/.test(url)) return url;
+  if (/^[A-Za-z0-9_-]{10,}$/.test(playlistValue)) return playlistValue;
   return '';
+}
+
+function getPlaylistLoadConfig(playlistId) {
+  if (playlistId === YOUTUBE_PLAYLIST_FALLBACK_ID) {
+    return { list: YOUTUBE_PLAYLIST_FALLBACK_VIDEO_IDS.slice() };
+  }
+
+  return { list: playlistId, listType: 'playlist' };
 }
 
 function clearTimer(timerRef) {
@@ -330,7 +408,7 @@ function handleProgressClick(event) {
 
 function setInitialPlayerState() {
   trackTitle.textContent = 'Loading playlist...';
-  trackSubtitle.textContent = 'Please provide a valid YouTube playlist ID.';
+  trackSubtitle.textContent = 'Preparing your playlist...';
   elapsedTime.textContent = '0:00';
   durationTime.textContent = '0:00';
   progressFill.style.width = '0%';
@@ -368,12 +446,16 @@ function attemptPlaylistLoad(playlistId) {
 
   playlistLoadAttempts += 1;
 
-  player.loadPlaylist({
-    list: playlistId,
-    listType: 'playlist',
-    index: 0,
-    suggestedQuality: 'large',
-  });
+  const playlistLoadConfig = getPlaylistLoadConfig(playlistId);
+  if (Array.isArray(playlistLoadConfig.list)) {
+    player.loadPlaylist(playlistLoadConfig.list, 0, 0, 'large');
+  } else {
+    player.loadPlaylist({
+      ...playlistLoadConfig,
+      index: 0,
+      suggestedQuality: 'large',
+    });
+  }
 
   playlistLoadRetryTimer = setTimeout(() => {
     playlistLoadRetryTimer = null;

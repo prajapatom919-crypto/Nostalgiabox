@@ -429,8 +429,11 @@ input {
 }
 
 .popover-song {
-  display: block;
+  display: flex;
+  align-items: center;
+  gap: 10px;
   width: 100%;
+  min-height: 48px;
   text-align: left;
   border: 0;
   background: transparent;
@@ -439,6 +442,20 @@ input {
   cursor: pointer;
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
   transition: color 150ms ease;
+}
+
+.popover-song-thumb {
+  flex: 0 0 32px;
+  width: 32px;
+  height: 32px;
+  object-fit: cover;
+}
+
+.popover-song-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .popover-song:hover {

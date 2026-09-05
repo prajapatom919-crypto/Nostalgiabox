@@ -308,6 +308,7 @@ const trackThumbnail = document.getElementById('trackThumbnail');
 const playPauseButton = document.getElementById('playPauseButton');
 const prevButton = document.getElementById('prevButton');
 const nextButton = document.getElementById('nextButton');
+const volumeIcon = document.querySelector('.volume-icon');
 const progressBar = document.getElementById('progressBar');
 const progressFill = document.getElementById('progressFill');
 const elapsedTime = document.getElementById('elapsedTime');
@@ -364,6 +365,8 @@ let playlistReadyRendered = false;
 let activePlaylistId = '';
 let playerReadyFallbackAttempts = 0;
 let fallbackPlaylistIndex = 0;
+let playerMuted = false;
+let previousVolumeLevel = 50;
 
 function parsePlaylistId(value) {
   if (!value) return '';
@@ -483,10 +486,56 @@ function getVolumeControlLevel() {
   return Math.min(100, Math.max(0, level));
 }
 
+function getFallbackTrackInfo(videoId) {
+  return YOUTUBE_PLAYLIST_FALLBACK_TRACK_INFO[videoId] || {};
+}
+
+function getTrackTitle(videoId, titleMap = new Map()) {
+  const mappedTitle = titleMap.get(videoId);
+  if (mappedTitle) return mappedTitle;
+
+  const fallbackTrackInfo = getFallbackTrackInfo(videoId);
+  return fallbackTrackInfo.title || 'Unknown track';
+}
+
 function syncVolumeToControl() {
   if (player && typeof player.setVolume === 'function') {
     player.setVolume(getVolumeControlLevel());
   }
+  updateVolumeIcon();
+}
+
+function updateVolumeIcon() {
+  if (!volumeIcon) return;
+  const isMuted = playerMuted || getVolumeControlLevel() === 0;
+  volumeIcon.textContent = isMuted ? '🔇' : '🔊';
+  volumeIcon.setAttribute('aria-label', isMuted ? 'Unmute' : 'Mute');
+  volumeIcon.setAttribute('title', isMuted ? 'Unmute' : 'Mute');
+}
+
+function toggleMute(event) {
+  if (event) {
+    event.preventDefault();
+    event.stopPropagation();
+  }
+  if (!player) return;
+
+  const currentLevel = getVolumeControlLevel();
+  if (!playerMuted && currentLevel > 0) {
+    previousVolumeLevel = currentLevel;
+  }
+
+  playerMuted = !playerMuted;
+  if (playerMuted) {
+    if (typeof player.mute === 'function') player.mute();
+  } else {
+    const restoredLevel = previousVolumeLevel > 0 ? previousVolumeLevel : 50;
+    if (typeof player.unMute === 'function') player.unMute();
+    if (typeof player.setVolume === 'function') player.setVolume(restoredLevel);
+    volumeControl.value = restoredLevel;
+  }
+
+  updateVolumeIcon();
 }
 
 function getPlaylistSnapshot() {
@@ -665,6 +714,17 @@ function onPlayerReady() {
 
   if (!listenersAttached) {
     volumeControl.addEventListener('input', handleVolumeChange);
+    if (volumeIcon) {
+      volumeIcon.setAttribute('role', 'button');
+      volumeIcon.setAttribute('tabindex', '0');
+      volumeIcon.addEventListener('click', toggleMute);
+      volumeIcon.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter' || event.key === ' ') {
+          toggleMute(event);
+        }
+      });
+      updateVolumeIcon();
+    }
     if (progressBar) progressBar.addEventListener('click', handleProgressClick);
     playPauseButton.addEventListener('click', togglePlayPause);
     prevButton.addEventListener('click', playPrevious);
@@ -1056,8 +1116,7 @@ function renderSongsItems() {
 
   songsList.innerHTML = ids
     .map((videoId, idx) => {
-      const fallbackTrackInfo = YOUTUBE_PLAYLIST_FALLBACK_TRACK_INFO[videoId] || {};
-      const title = titleMap.get(videoId) || fallbackTrackInfo.title || videoId;
+      const title = getTrackTitle(videoId, titleMap);
       const thumbnail = `https://img.youtube.com/vi/${videoId}/default.jpg`;
       return `
         <button class="popover-song" type="button" data-index="${idx}" data-video-id="${videoId}">
@@ -1144,7 +1203,7 @@ function updateTrackInfo() {
   const fallbackVideoId = ids.length > 0 ? ids[fallbackIndex] : '';
   const playerVideoId = videoData.video_id || '';
   const videoId = isUsingFallbackPlaylist() && fallbackVideoId ? fallbackVideoId : playerVideoId;
-  const fallbackTrackInfo = YOUTUBE_PLAYLIST_FALLBACK_TRACK_INFO[videoId] || {};
+  const fallbackTrackInfo = getFallbackTrackInfo(videoId);
   const canUsePlayerMetadata = !playerVideoId || playerVideoId === videoId;
   const title = (canUsePlayerMetadata && videoData.title) || fallbackTrackInfo.title || 'Playing from YouTube playlist';
   const author = (canUsePlayerMetadata && videoData.author) || fallbackTrackInfo.author || 'YouTube playlist';
@@ -1227,9 +1286,18 @@ function playNext() {
 function handleVolumeChange(event) {
   volumeControl.value = event.target.value;
   const level = getVolumeControlLevel();
+  if (level > 0) {
+    previousVolumeLevel = level;
+    playerMuted = false;
+    if (player && typeof player.unMute === 'function') player.unMute();
+  } else {
+    playerMuted = true;
+    if (player && typeof player.mute === 'function') player.mute();
+  }
   if (player && typeof player.setVolume === 'function') {
     player.setVolume(level);
   }
+  updateVolumeIcon();
 }
 
 function logDimensions() {

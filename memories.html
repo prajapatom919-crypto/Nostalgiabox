@@ -55,8 +55,28 @@
 
         <h2 class="subsection-title">Latest Stories</h2>
 
-        <div class="archive-grid">
-          <article class="archive-card">
+        <!-- Search and Filter Controls -->
+        <div class="archive-controls">
+          <div class="archive-search">
+            <label for="archive-search-input" class="archive-search-label">Search memories</label>
+            <input
+              type="text"
+              id="archive-search-input"
+              class="archive-search-input"
+              placeholder="Search titles, categories, descriptions..."
+              aria-label="Search archive"
+            />
+          </div>
+          <div class="category-filter" role="group" aria-label="Filter by category">
+            <button class="category-filter-btn active" data-category="all" aria-pressed="true">All</button>
+            <button class="category-filter-btn" data-category="cartoons" aria-pressed="false">Cartoons</button>
+            <button class="category-filter-btn" data-category="music" aria-pressed="false">Music</button>
+            <button class="category-filter-btn" data-category="television" aria-pressed="false">Television</button>
+          </div>
+        </div>
+
+        <div class="archive-grid" id="latest-stories-grid">
+          <article class="archive-card" data-category="cartoons" data-title="The Evolution of Cartoon Theme Songs: From the 90s to the Early 2000s" data-description="Explore how cartoon opening themes shaped childhood routines, created anticipation, and became defining soundtracks of a generation growing up in the 1990s and early 2000s.">
             <span class="archive-card-tag">Cartoons</span>
             <h2 class="archive-card-title">The Evolution of Cartoon Theme Songs: From the 90s to the Early 2000s</h2>
             <p class="archive-card-excerpt">
@@ -66,7 +86,7 @@
             <a href="memories-cartoon-theme-songs.html" class="archive-card-link">Read story</a>
           </article>
 
-          <article class="archive-card">
+          <article class="archive-card" data-category="music" data-title="Before Streaming: How Cassette Tapes, CDs and TV Shaped What We Listened To" data-description="Explore how physical media like cassette tapes and CDs, along with television music discovery, shaped listening habits before the era of algorithmic streaming and on-demand music.">
             <span class="archive-card-tag">Music</span>
             <h2 class="archive-card-title">Before Streaming: How Cassette Tapes, CDs and TV Shaped What We Listened To</h2>
             <p class="archive-card-excerpt">
@@ -76,7 +96,7 @@
             <a href="memories-cassette-cd-tv.html" class="archive-card-link">Read story</a>
           </article>
 
-          <article class="archive-card">
+          <article class="archive-card" data-category="music" data-title="Why Old Songs Feel Different: Understanding Nostalgia and Memory" data-description="Explore the psychological connection between music and memory, why songs from childhood feel unusually vivid, and how music triggers autobiographical memories and emotional states.">
             <span class="archive-card-tag">Music</span>
             <h2 class="archive-card-title">Why Old Songs Feel Different: Understanding Nostalgia and Memory</h2>
             <p class="archive-card-excerpt">
@@ -86,7 +106,7 @@
             <a href="memories-music-memory.html" class="archive-card-link">Read story</a>
           </article>
 
-          <article class="archive-card">
+          <article class="archive-card" data-category="television" data-title="Indian Television Memories: The Shows, Themes and Rituals Around Childhood Viewing" data-description="Explore the experience of scheduled television in India, from waiting for favorite programmes to cartoon blocks, family viewing routines, and how television memories differed from today's on-demand experience.">
             <span class="archive-card-tag">Television</span>
             <h2 class="archive-card-title">Indian Television Memories: The Shows, Themes and Rituals Around Childhood Viewing</h2>
             <p class="archive-card-excerpt">
@@ -95,6 +115,18 @@
             <div class="archive-card-meta">September 30, 2026</div>
             <a href="memories-indian-television.html" class="archive-card-link">Read story</a>
           </article>
+        </div>
+
+        <div class="archive-empty-state" id="archive-empty-state" style="display: none;">
+          <p>No memories match your search. Try adjusting your filters or search terms.</p>
+        </div>
+
+        <!-- Random Memory -->
+        <div class="random-memory-section">
+          <button id="random-memory-btn" class="random-memory-btn" aria-label="Open a random memory">
+            <span class="random-memory-icon" aria-hidden="true">🎲</span>
+            <span class="random-memory-text">Open a Random Memory</span>
+          </button>
         </div>
 
         <h2 class="subsection-title" style="margin-top: 64px;">Existing Editorial Collection</h2>
@@ -142,6 +174,99 @@
         </div>
       </article>
     </main>
+
+    <script>
+    (function() {
+      'use strict';
+
+      // Archive filtering and search functionality
+      const searchInput = document.getElementById('archive-search-input');
+      const categoryBtns = document.querySelectorAll('.category-filter-btn');
+      const archiveGrid = document.getElementById('latest-stories-grid');
+      const archiveCards = archiveGrid.querySelectorAll('.archive-card');
+      const emptyState = document.getElementById('archive-empty-state');
+      const randomMemoryBtn = document.getElementById('random-memory-btn');
+
+      // Current filter state
+      let currentCategory = 'all';
+      let currentSearch = '';
+
+      // Filter cards based on category and search
+      function filterCards() {
+        let visibleCount = 0;
+
+        archiveCards.forEach(card => {
+          const category = card.getAttribute('data-category');
+          const title = card.getAttribute('data-title') || '';
+          const description = card.getAttribute('data-description') || '';
+          const tag = card.querySelector('.archive-card-tag').textContent || '';
+
+          const matchesCategory = currentCategory === 'all' || category === currentCategory;
+          const searchLower = currentSearch.toLowerCase();
+          const matchesSearch = !currentSearch ||
+            title.toLowerCase().includes(searchLower) ||
+            description.toLowerCase().includes(searchLower) ||
+            tag.toLowerCase().includes(searchLower);
+
+          if (matchesCategory && matchesSearch) {
+            card.style.display = '';
+            visibleCount++;
+          } else {
+            card.style.display = 'none';
+          }
+        });
+
+        // Show/hide empty state
+        if (emptyState) {
+          emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+      }
+
+      // Category filter buttons
+      categoryBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          // Update active state
+          categoryBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          this.classList.add('active');
+          this.setAttribute('aria-pressed', 'true');
+
+          // Update filter
+          currentCategory = this.getAttribute('data-category');
+          filterCards();
+        });
+      });
+
+      // Search input
+      if (searchInput) {
+        searchInput.addEventListener('input', function() {
+          currentSearch = this.value.trim();
+          filterCards();
+        });
+      }
+
+      // Random memory functionality
+      if (randomMemoryBtn) {
+        const articleUrls = [
+          'memories-cartoon-theme-songs.html',
+          'memories-cassette-cd-tv.html',
+          'memories-music-memory.html',
+          'memories-indian-television.html'
+        ];
+
+        randomMemoryBtn.addEventListener('click', function() {
+          const randomIndex = Math.floor(Math.random() * articleUrls.length);
+          const randomUrl = articleUrls[randomIndex];
+          window.location.href = randomUrl;
+        });
+      }
+
+      // Initialize
+      filterCards();
+    })();
+    </script>
 
     <footer class="site-footer">
       <div class="footer-inner">

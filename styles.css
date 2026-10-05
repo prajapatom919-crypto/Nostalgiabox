@@ -1144,6 +1144,168 @@ input {
   margin-top: 48px;
 }
 
+.archive-controls {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.archive-search {
+  width: 100%;
+}
+
+.archive-search-label {
+  display: block;
+  font-size: 14px;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 8px;
+  letter-spacing: 0.04em;
+}
+
+.archive-search-input {
+  width: 100%;
+  padding: 12px 16px;
+  font-size: 15px;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(229, 199, 157, 0.2);
+  border-radius: 8px;
+  color: #ffffff;
+  transition: border-color 180ms ease, background 180ms ease;
+}
+
+.archive-search-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.archive-search-input:focus {
+  outline: none;
+  border-color: var(--accent);
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.category-filter {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.category-filter-btn {
+  border: 1px solid rgba(229, 199, 157, 0.3);
+  background: transparent;
+  color: rgba(255, 255, 255, 0.8);
+  padding: 8px 16px;
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 180ms ease;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.category-filter-btn:hover,
+.category-filter-btn:focus-visible {
+  border-color: var(--accent);
+  color: #ffffff;
+  background: rgba(229, 199, 157, 0.1);
+}
+
+.category-filter-btn.active {
+  background: var(--accent);
+  color: #120e0b;
+  border-color: var(--accent);
+}
+
+.archive-empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 15px;
+  font-style: italic;
+}
+
+.random-memory-section {
+  margin-top: 48px;
+  text-align: center;
+}
+
+.random-memory-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid rgba(229, 199, 157, 0.3);
+  background: transparent;
+  color: var(--accent);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 180ms ease;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.random-memory-btn:hover,
+.random-memory-btn:focus-visible {
+  border-color: var(--accent);
+  background: rgba(229, 199, 157, 0.1);
+  color: #ffffff;
+}
+
+.random-memory-icon {
+  font-size: 18px;
+}
+
+.archive-browse-link {
+  margin-top: 32px;
+  text-align: center;
+}
+
+.archive-browse-btn {
+  display: inline-block;
+  padding: 12px 24px;
+  font-size: 14px;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  border: 1px solid var(--accent);
+  background: transparent;
+  color: var(--accent);
+  border-radius: 4px;
+  text-decoration: none;
+  transition: all 180ms ease;
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+}
+
+.archive-browse-btn:hover,
+.archive-browse-btn:focus-visible {
+  background: var(--accent);
+  color: #120e0b;
+}
+
+@media (min-width: 768px) {
+  .archive-controls {
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 24px;
+  }
+
+  .archive-search {
+    flex: 1;
+    max-width: 400px;
+  }
+
+  .category-filter {
+    flex-wrap: nowrap;
+  }
+}
+
 .archive-card {
   background: rgba(255, 255, 255, 0.025);
   border: 1px solid rgba(229, 199, 157, 0.14);

@@ -165,12 +165,41 @@
             </div>
           </section>
 
+          <div class="random-memory-section">
+            <button id="random-memory-btn" class="random-memory-btn" aria-label="Open a random memory">
+              <span class="random-memory-icon" aria-hidden="true">🎲</span>
+              <span class="random-memory-text">Open a Random Memory</span>
+            </button>
+          </div>
+
           <div class="editorial-note">
             <p><strong>Editorial Note:</strong> This essay is an original piece of editorial writing and cultural reflection. Historical references, show titles, and cultural artifacts are discussed for educational and contextual purposes. All third-party media, songs, and trademarks remain the property of their respective rights holders; discussion or embedding on Nostalgia Box does not imply ownership or official endorsement.</p>
           </div>
         </div>
       </article>
     </main>
+
+    <script>
+    (function() {
+      'use strict';
+
+      // Random memory functionality
+      const randomMemoryBtn = document.getElementById('random-memory-btn');
+      if (randomMemoryBtn) {
+        const articleUrls = [
+          'memories-cartoon-theme-songs.html',
+          'memories-cassette-cd-tv.html',
+          'memories-indian-television.html'
+        ];
+
+        randomMemoryBtn.addEventListener('click', function() {
+          const randomIndex = Math.floor(Math.random() * articleUrls.length);
+          const randomUrl = articleUrls[randomIndex];
+          window.location.href = randomUrl;
+        });
+      }
+    })();
+    </script>
 
     <footer class="site-footer">
       <div class="footer-inner">

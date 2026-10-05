@@ -21,6 +21,14 @@
   <meta name="description" content="Explore the Nostalgia Box editorial archive featuring original essays on the stories behind nostalgic sounds, childhood memories, and cultural soundtracks." />
   <meta name="theme-color" content="#120e0b" />
   <link rel="canonical" href="https://www.nostalgiabox.buzz/memories.html" />
+  <meta property="og:title" content="Memories — Nostalgia Box Archive" />
+  <meta property="og:description" content="Explore the Nostalgia Box editorial archive featuring original essays on the stories behind nostalgic sounds, childhood memories, and cultural soundtracks." />
+  <meta property="og:url" content="https://www.nostalgiabox.buzz/memories.html" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Nostalgia Box" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Memories — Nostalgia Box Archive" />
+  <meta name="twitter:description" content="Explore the Nostalgia Box editorial archive featuring original essays on the stories behind nostalgic sounds, childhood memories, and cultural soundtracks." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -28,7 +36,7 @@
     rel="stylesheet" />
   <link rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📻%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 </head>
 
 <body>
@@ -49,9 +57,19 @@
             The Nostalgia Box archive is a curated collection of original editorial writing exploring the cultural context and feeling around older music, television, cartoons, advertisements, physical media, and everyday memories. Each essay is independently written and selected for its emotional and historical resonance.
           </p>
           <p class="archive-intro">
-            Categories include Music, Television, Cartoons, and Everyday Memories. Articles examine how sonic and visual artifacts from the late 20th and early 21st centuries continue to shape personal and collective identity.
+            Categories include Music, Television, Cartoons, and Everyday Memories. Articles are also tagged with the era they genuinely belong to, so memories can be browsed by period as well as by theme. Each essay examines how sonic and visual artifacts from the late 20th and early 21st centuries continue to shape personal and collective identity.
           </p>
         </div>
+
+        <section class="featured-memory" aria-labelledby="featured-memory-title">
+          <span class="featured-memory-label">Featured Memory</span>
+          <p class="featured-memory-meta">Cartoons &middot; 1990s&ndash;2000s &middot; Theme Songs</p>
+          <h2 id="featured-memory-title" class="featured-memory-title">The Evolution of Cartoon Theme Songs: From the 90s to the Early 2000s</h2>
+          <p class="featured-memory-desc">
+            How opening themes turned scheduled broadcasts into daily rituals &mdash; and why thirty seconds of music could make an entire afternoon feel like an adventure. This essay traces the craft of the cartoon theme, from strong melodic hooks to the Hindi title track of <em>The Jungle Book</em>.
+          </p>
+          <a href="memories-cartoon-theme-songs.html" class="featured-memory-link">Read the full essay &rarr;</a>
+        </section>
 
         <h2 class="subsection-title">Latest Stories</h2>
 
@@ -63,67 +81,111 @@
               type="text"
               id="archive-search-input"
               class="archive-search-input"
-              placeholder="Search titles, categories, descriptions..."
+              placeholder="Search titles, categories, eras..."
               aria-label="Search archive"
             />
           </div>
           <div class="category-filter" role="group" aria-label="Filter by category">
-            <button class="category-filter-btn active" data-category="all" aria-pressed="true">All</button>
-            <button class="category-filter-btn" data-category="cartoons" aria-pressed="false">Cartoons</button>
-            <button class="category-filter-btn" data-category="music" aria-pressed="false">Music</button>
-            <button class="category-filter-btn" data-category="television" aria-pressed="false">Television</button>
+            <button type="button" class="category-filter-btn active" data-category="all" aria-pressed="true">All</button>
+            <button type="button" class="category-filter-btn" data-category="cartoons" aria-pressed="false">Cartoons</button>
+            <button type="button" class="category-filter-btn" data-category="music" aria-pressed="false">Music</button>
+            <button type="button" class="category-filter-btn" data-category="television" aria-pressed="false">Television</button>
+            <button type="button" class="category-filter-btn" data-category="everyday" aria-pressed="false">Everyday</button>
+          </div>
+          <div class="era-filter" role="group" aria-label="Filter by era">
+            <button type="button" class="era-filter-btn active" data-era="all" aria-pressed="true">All Eras</button>
+            <button type="button" class="era-filter-btn" data-era="1980s" aria-pressed="false">1980s</button>
+            <button type="button" class="era-filter-btn" data-era="1990s" aria-pressed="false">1990s</button>
+            <button type="button" class="era-filter-btn" data-era="2000s" aria-pressed="false">2000s</button>
           </div>
         </div>
 
         <div class="archive-grid" id="latest-stories-grid">
-          <article class="archive-card" data-category="cartoons" data-title="The Evolution of Cartoon Theme Songs: From the 90s to the Early 2000s" data-description="Explore how cartoon opening themes shaped childhood routines, created anticipation, and became defining soundtracks of a generation growing up in the 1990s and early 2000s.">
+          <article class="archive-card" data-category="music" data-era="1980s 1990s 2000s" data-type="Radio &amp; Recording" data-title="Pressing Record: Taping Songs Off the Radio" data-description="How listeners waited for a favourite song on the radio and captured it onto cassette, and what home recording taught a generation about patience, curation and imperfection.">
+            <span class="archive-card-tag">Music</span>
+            <h2 class="archive-card-title">Pressing Record: Taping Songs Off the Radio</h2>
+            <p class="archive-card-excerpt">
+              Waiting for your song to come on air, holding down the record button and living with the presenter's voice bleeding into the last few seconds: how radio taught a generation to record.
+            </p>
+            <div class="archive-card-meta">October 5, 2026</div>
+            <div class="archive-card-detail">1980s&ndash;2000s &middot; Radio &amp; Recording</div>
+            <a href="memories-radio-cassette.html" class="archive-card-link">Read story</a>
+          </article>
+
+          <article class="archive-card" data-category="everyday" data-era="2000s" data-type="Phone Culture" data-title="Ringtones and Caller Tunes: When Your Phone Had a Soundtrack" data-description="From monophonic beeps and polyphonic melodies to paid caller tunes, how ringtone culture in the 2000s turned mobile phones into personal soundtracks.">
+            <span class="archive-card-tag">Everyday Memories</span>
+            <h2 class="archive-card-title">Ringtones and Caller Tunes: When Your Phone Had a Soundtrack</h2>
+            <p class="archive-card-excerpt">
+              Monophonic beeps gave way to polyphonic melodies and paid caller tunes, and a phone ringing across a classroom told everyone exactly who you were.
+            </p>
+            <div class="archive-card-meta">October 5, 2026</div>
+            <div class="archive-card-detail">2000s &middot; Phone Culture</div>
+            <a href="memories-ringtone-caller-tunes.html" class="archive-card-link">Read story</a>
+          </article>
+
+          <article class="archive-card" data-category="everyday" data-era="1990s 2000s" data-type="School Days" data-title="School-Time Music: Assembly Halls, Annual Days and Bus Rides" data-description="Morning assembly songs, music periods with a tape recorder, annual day rehearsals and shared earphones on the bus: the soundtrack of school life.">
+            <span class="archive-card-tag">Everyday Memories</span>
+            <h2 class="archive-card-title">School-Time Music: Assembly Halls, Annual Days and Bus Rides</h2>
+            <p class="archive-card-excerpt">
+              The morning bell, the music period tape recorder, annual day rehearsals and one pair of earphones shared on the bus ride home: why school songs stay remembered.
+            </p>
+            <div class="archive-card-meta">October 5, 2026</div>
+            <div class="archive-card-detail">1990s&ndash;2000s &middot; School Days</div>
+            <a href="memories-school-music.html" class="archive-card-link">Read story</a>
+          </article>
+
+          <article class="archive-card" data-category="cartoons" data-era="1990s 2000s" data-type="Theme Songs" data-title="The Evolution of Cartoon Theme Songs: From the 90s to the Early 2000s" data-description="Explore how cartoon opening themes shaped childhood routines, created anticipation, and became defining soundtracks of a generation growing up in the 1990s and early 2000s.">
             <span class="archive-card-tag">Cartoons</span>
             <h2 class="archive-card-title">The Evolution of Cartoon Theme Songs: From the 90s to the Early 2000s</h2>
             <p class="archive-card-excerpt">
               Explore how cartoon opening themes shaped childhood routines, created anticipation, and became defining soundtracks of a generation growing up in the 1990s and early 2000s.
             </p>
             <div class="archive-card-meta">September 30, 2026</div>
+            <div class="archive-card-detail">1990s&ndash;2000s &middot; Theme Songs</div>
             <a href="memories-cartoon-theme-songs.html" class="archive-card-link">Read story</a>
           </article>
 
-          <article class="archive-card" data-category="music" data-title="Before Streaming: How Cassette Tapes, CDs and TV Shaped What We Listened To" data-description="Explore how physical media like cassette tapes and CDs, along with television music discovery, shaped listening habits before the era of algorithmic streaming and on-demand music.">
+          <article class="archive-card" data-category="music" data-era="1980s 1990s" data-type="Physical Media" data-title="Before Streaming: How Cassette Tapes, CDs and TV Shaped What We Listened To" data-description="Explore how physical media like cassette tapes and CDs, along with television music discovery, shaped listening habits before the era of algorithmic streaming and on-demand music.">
             <span class="archive-card-tag">Music</span>
             <h2 class="archive-card-title">Before Streaming: How Cassette Tapes, CDs and TV Shaped What We Listened To</h2>
             <p class="archive-card-excerpt">
               Explore how physical media like cassette tapes and CDs, along with television music discovery, shaped listening habits before the era of algorithmic streaming and on-demand music.
             </p>
             <div class="archive-card-meta">September 30, 2026</div>
+            <div class="archive-card-detail">1980s&ndash;1990s &middot; Physical Media</div>
             <a href="memories-cassette-cd-tv.html" class="archive-card-link">Read story</a>
           </article>
 
-          <article class="archive-card" data-category="music" data-title="Why Old Songs Feel Different: Understanding Nostalgia and Memory" data-description="Explore the psychological connection between music and memory, why songs from childhood feel unusually vivid, and how music triggers autobiographical memories and emotional states.">
+          <article class="archive-card" data-category="music" data-era="" data-type="Memory &amp; Psychology" data-title="Why Old Songs Feel Different: Understanding Nostalgia and Memory" data-description="Explore the psychological connection between music and memory, why songs from childhood feel unusually vivid, and how music triggers autobiographical memories and emotional states.">
             <span class="archive-card-tag">Music</span>
             <h2 class="archive-card-title">Why Old Songs Feel Different: Understanding Nostalgia and Memory</h2>
             <p class="archive-card-excerpt">
               Explore the psychological connection between music and memory, why songs from childhood feel unusually vivid, and how music triggers autobiographical memories and emotional states.
             </p>
             <div class="archive-card-meta">September 30, 2026</div>
+            <div class="archive-card-detail">Memory &amp; Psychology</div>
             <a href="memories-music-memory.html" class="archive-card-link">Read story</a>
           </article>
 
-          <article class="archive-card" data-category="television" data-title="Indian Television Memories: The Shows, Themes and Rituals Around Childhood Viewing" data-description="Explore the experience of scheduled television in India, from waiting for favorite programmes to cartoon blocks, family viewing routines, and how television memories differed from today's on-demand experience.">
+          <article class="archive-card" data-category="television" data-era="1990s 2000s" data-type="Family Viewing" data-title="Indian Television Memories: The Shows, Themes and Rituals Around Childhood Viewing" data-description="Explore the experience of scheduled television in India, from waiting for favorite programmes to cartoon blocks, family viewing routines, and how television memories differed from today's on-demand experience.">
             <span class="archive-card-tag">Television</span>
             <h2 class="archive-card-title">Indian Television Memories: The Shows, Themes and Rituals Around Childhood Viewing</h2>
             <p class="archive-card-excerpt">
               Explore the experience of scheduled television in India, from waiting for favorite programmes to cartoon blocks, family viewing routines, and how television memories differed from today's on-demand experience.
             </p>
             <div class="archive-card-meta">September 30, 2026</div>
+            <div class="archive-card-detail">1990s&ndash;2000s &middot; Family Viewing</div>
             <a href="memories-indian-television.html" class="archive-card-link">Read story</a>
           </article>
         </div>
 
         <div class="archive-empty-state" id="archive-empty-state" style="display: none;">
-          <p>No memories match your search. Try adjusting your filters or search terms.</p>
+          <p>No memories match. Try a different category, era, or search term.</p>
         </div>
 
         <!-- Random Memory -->
         <div class="random-memory-section">
-          <button id="random-memory-btn" class="random-memory-btn" aria-label="Open a random memory">
+          <button type="button" id="random-memory-btn" class="random-memory-btn" aria-label="Open a random memory">
             <span class="random-memory-icon" aria-hidden="true">🎲</span>
             <span class="random-memory-text">Open a Random Memory</span>
           </button>
@@ -189,26 +251,32 @@
 
       // Current filter state
       let currentCategory = 'all';
+      let currentEra = 'all';
       let currentSearch = '';
 
-      // Filter cards based on category and search
+      // Filter cards based on category, era and search
       function filterCards() {
         let visibleCount = 0;
+        const searchLower = currentSearch.toLowerCase();
 
         archiveCards.forEach(card => {
           const category = card.getAttribute('data-category');
+          const eras = (card.getAttribute('data-era') || '').split(/\s+/).filter(Boolean);
+          const type = card.getAttribute('data-type') || '';
           const title = card.getAttribute('data-title') || '';
           const description = card.getAttribute('data-description') || '';
           const tag = card.querySelector('.archive-card-tag').textContent || '';
 
           const matchesCategory = currentCategory === 'all' || category === currentCategory;
-          const searchLower = currentSearch.toLowerCase();
+          const matchesEra = currentEra === 'all' || eras.indexOf(currentEra) !== -1;
           const matchesSearch = !currentSearch ||
             title.toLowerCase().includes(searchLower) ||
             description.toLowerCase().includes(searchLower) ||
-            tag.toLowerCase().includes(searchLower);
+            tag.toLowerCase().includes(searchLower) ||
+            type.toLowerCase().includes(searchLower) ||
+            eras.join(' ').toLowerCase().includes(searchLower);
 
-          if (matchesCategory && matchesSearch) {
+          if (matchesCategory && matchesEra && matchesSearch) {
             card.style.display = '';
             visibleCount++;
           } else {
@@ -221,6 +289,22 @@
           emptyState.style.display = visibleCount === 0 ? 'block' : 'none';
         }
       }
+
+      // Era filter buttons (works together with category filter and search)
+      const eraBtns = document.querySelectorAll('.era-filter-btn');
+      eraBtns.forEach(btn => {
+        btn.addEventListener('click', function() {
+          eraBtns.forEach(b => {
+            b.classList.remove('active');
+            b.setAttribute('aria-pressed', 'false');
+          });
+          this.classList.add('active');
+          this.setAttribute('aria-pressed', 'true');
+
+          currentEra = this.getAttribute('data-era');
+          filterCards();
+        });
+      });
 
       // Category filter buttons
       categoryBtns.forEach(btn => {
@@ -247,18 +331,23 @@
         });
       }
 
-      // Random memory functionality
+      // Random memory functionality — every article in the archive except this page
       if (randomMemoryBtn) {
         const articleUrls = [
+          'memories-radio-cassette.html',
+          'memories-ringtone-caller-tunes.html',
+          'memories-school-music.html',
           'memories-cartoon-theme-songs.html',
           'memories-cassette-cd-tv.html',
           'memories-music-memory.html',
           'memories-indian-television.html'
         ];
+        const currentPage = window.location.pathname.split('/').pop();
+        const choices = articleUrls.filter(url => url !== currentPage);
 
         randomMemoryBtn.addEventListener('click', function() {
-          const randomIndex = Math.floor(Math.random() * articleUrls.length);
-          const randomUrl = articleUrls[randomIndex];
+          const randomIndex = Math.floor(Math.random() * choices.length);
+          const randomUrl = choices[randomIndex];
           window.location.href = randomUrl;
         });
       }

@@ -21,6 +21,14 @@
   <meta name="description" content="Explore how physical media like cassette tapes and CDs, along with television music discovery, shaped listening habits before the era of algorithmic streaming and on-demand music." />
   <meta name="theme-color" content="#120e0b" />
   <link rel="canonical" href="https://www.nostalgiabox.buzz/memories-cassette-cd-tv.html" />
+  <meta property="og:title" content="Before Streaming: How Cassette Tapes, CDs and TV Shaped What We Listened To — Nostalgia Box" />
+  <meta property="og:description" content="Explore how physical media like cassette tapes and CDs, along with television music discovery, shaped listening habits before the era of algorithmic streaming and on-demand music." />
+  <meta property="og:url" content="https://www.nostalgiabox.buzz/memories-cassette-cd-tv.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Nostalgia Box" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Before Streaming: How Cassette Tapes, CDs and TV Shaped What We Listened To — Nostalgia Box" />
+  <meta name="twitter:description" content="Explore how physical media like cassette tapes and CDs, along with television music discovery, shaped listening habits before the era of algorithmic streaming and on-demand music." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -28,7 +36,7 @@
     rel="stylesheet" />
   <link rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📻%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 </head>
 
 <body>
@@ -42,7 +50,10 @@
       <article class="policy-card">
         <span class="section-tag">Editorial Essay</span>
         <h1 class="section-title">Before Streaming: How Cassette Tapes, CDs and TV Shaped What We Listened To</h1>
-        <div class="policy-meta">Published: September 30, 2026 &middot; By Nostalgia Box Editorial</div>
+        <div class="policy-meta">
+          Published: September 30, 2026 &middot; By Nostalgia Box Editorial
+          <div class="article-meta-tags">Music &middot; 1980s&ndash;1990s &middot; Physical Media</div>
+        </div>
 
         <div class="editorial-prose">
           <p>
@@ -153,8 +164,19 @@
             </div>
           </section>
 
+          <nav class="article-nav" aria-label="Previous and next memory">
+            <a href="memories-cartoon-theme-songs.html" class="article-nav-link prev">
+              <span class="article-nav-dir">&larr; Previous Memory</span>
+              <span class="article-nav-title">The Evolution of Cartoon Theme Songs: From the 90s to the Early 2000s</span>
+            </a>
+            <a href="memories-music-memory.html" class="article-nav-link next">
+              <span class="article-nav-dir">Next Memory &rarr;</span>
+              <span class="article-nav-title">Why Old Songs Feel Different: Understanding Nostalgia and Memory</span>
+            </a>
+          </nav>
+
           <div class="random-memory-section">
-            <button id="random-memory-btn" class="random-memory-btn" aria-label="Open a random memory">
+            <button type="button" id="random-memory-btn" class="random-memory-btn" aria-label="Open a random memory">
               <span class="random-memory-icon" aria-hidden="true">🎲</span>
               <span class="random-memory-text">Open a Random Memory</span>
             </button>
@@ -175,14 +197,20 @@
       const randomMemoryBtn = document.getElementById('random-memory-btn');
       if (randomMemoryBtn) {
         const articleUrls = [
+          'memories-radio-cassette.html',
+          'memories-ringtone-caller-tunes.html',
+          'memories-school-music.html',
           'memories-cartoon-theme-songs.html',
+          'memories-cassette-cd-tv.html',
           'memories-music-memory.html',
           'memories-indian-television.html'
         ];
+        const currentPage = window.location.pathname.split('/').pop();
+        const choices = articleUrls.filter(url => url !== currentPage);
 
         randomMemoryBtn.addEventListener('click', function() {
-          const randomIndex = Math.floor(Math.random() * articleUrls.length);
-          const randomUrl = articleUrls[randomIndex];
+          const randomIndex = Math.floor(Math.random() * choices.length);
+          const randomUrl = choices[randomIndex];
           window.location.href = randomUrl;
         });
       }

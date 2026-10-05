@@ -1,8 +1,8 @@
-const CACHE_NAME = 'nostalgia-box-v2';
+const CACHE_NAME = 'nostalgia-box-v3';
 const APP_SHELL = [
   './',
   './index.html',
-  './styles.css?v=4',
+  './styles.css?v=6',
   './script.js',
   './manifest.webmanifest',
   './icon.svg',

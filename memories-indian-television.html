@@ -21,6 +21,14 @@
   <meta name="description" content="Explore the experience of scheduled television in India, from waiting for favorite programmes to cartoon blocks, family viewing routines, and how television memories differed from today's on-demand experience." />
   <meta name="theme-color" content="#120e0b" />
   <link rel="canonical" href="https://www.nostalgiabox.buzz/memories-indian-television.html" />
+  <meta property="og:title" content="Indian Television Memories: The Shows, Themes and Rituals Around Childhood Viewing — Nostalgia Box" />
+  <meta property="og:description" content="Explore the experience of scheduled television in India, from waiting for favorite programmes to cartoon blocks, family viewing routines, and how television memories differed from today's on-demand experience." />
+  <meta property="og:url" content="https://www.nostalgiabox.buzz/memories-indian-television.html" />
+  <meta property="og:type" content="article" />
+  <meta property="og:site_name" content="Nostalgia Box" />
+  <meta name="twitter:card" content="summary" />
+  <meta name="twitter:title" content="Indian Television Memories: The Shows, Themes and Rituals Around Childhood Viewing — Nostalgia Box" />
+  <meta name="twitter:description" content="Explore the experience of scheduled television in India, from waiting for favorite programmes to cartoon blocks, family viewing routines, and how television memories differed from today's on-demand experience." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -28,7 +36,7 @@
     rel="stylesheet" />
   <link rel="icon"
     href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='90'%3E📻%3C/text%3E%3C/svg%3E" />
-  <link rel="stylesheet" href="styles.css?v=5" />
+  <link rel="stylesheet" href="styles.css?v=6" />
 </head>
 
 <body>
@@ -42,7 +50,10 @@
       <article class="policy-card">
         <span class="section-tag">Editorial Essay</span>
         <h1 class="section-title">Indian Television Memories: The Shows, Themes and Rituals Around Childhood Viewing</h1>
-        <div class="policy-meta">Published: September 30, 2026 &middot; By Nostalgia Box Editorial</div>
+        <div class="policy-meta">
+          Published: September 30, 2026 &middot; By Nostalgia Box Editorial
+          <div class="article-meta-tags">Television &middot; 1990s&ndash;2000s &middot; Family Viewing</div>
+        </div>
 
         <div class="editorial-prose">
           <p>
@@ -164,8 +175,15 @@
             </div>
           </section>
 
+          <nav class="article-nav" aria-label="Previous and next memory">
+            <a href="memories-music-memory.html" class="article-nav-link prev">
+              <span class="article-nav-dir">&larr; Previous Memory</span>
+              <span class="article-nav-title">Why Old Songs Feel Different: Understanding Nostalgia and Memory</span>
+            </a>
+          </nav>
+
           <div class="random-memory-section">
-            <button id="random-memory-btn" class="random-memory-btn" aria-label="Open a random memory">
+            <button type="button" id="random-memory-btn" class="random-memory-btn" aria-label="Open a random memory">
               <span class="random-memory-icon" aria-hidden="true">🎲</span>
               <span class="random-memory-text">Open a Random Memory</span>
             </button>
@@ -186,14 +204,20 @@
       const randomMemoryBtn = document.getElementById('random-memory-btn');
       if (randomMemoryBtn) {
         const articleUrls = [
+          'memories-radio-cassette.html',
+          'memories-ringtone-caller-tunes.html',
+          'memories-school-music.html',
           'memories-cartoon-theme-songs.html',
           'memories-cassette-cd-tv.html',
-          'memories-music-memory.html'
+          'memories-music-memory.html',
+          'memories-indian-television.html'
         ];
+        const currentPage = window.location.pathname.split('/').pop();
+        const choices = articleUrls.filter(url => url !== currentPage);
 
         randomMemoryBtn.addEventListener('click', function() {
-          const randomIndex = Math.floor(Math.random() * articleUrls.length);
-          const randomUrl = articleUrls[randomIndex];
+          const randomIndex = Math.floor(Math.random() * choices.length);
+          const randomUrl = choices[randomIndex];
           window.location.href = randomUrl;
         });
       }

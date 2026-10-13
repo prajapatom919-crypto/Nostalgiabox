@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://www.nostalgiabox.buzz/sitemap.xml
+Sitemap: https://nostalgiabox.buzz/sitemap.xml
